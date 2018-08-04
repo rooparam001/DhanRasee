@@ -13,6 +13,7 @@
     <string name="forgot_password">Forgot Password?</string>
 
     <!--Loan items-->
+    <string name="select_loan">Select Loan Category</string>
     <string name="personal_loan">Personal Loan(for salaried)</string>
     <string name="business_loan">Business Loan(for self-employed)</string>
     <string name="daily_loan">Daily Loan(only for shopkeepers)</string>
