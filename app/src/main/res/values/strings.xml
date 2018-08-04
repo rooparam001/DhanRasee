@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">DhanRasee</string>
+
+    <!--Text on login-->
+
+    <string name="skip_btn">Skip</string>
+    <string name="login_text">LOGIN</string>
+    <string name="username_text">USERNAME</string>
+    <string name="password_text">PASSWORD</string>
+    <string name="login_btn">Login</string>
+    <string name="sign_up_btn">Sign Up</string>
+    <string name="forgot_login">Forgot Login ID?</string>
+    <string name="forgot_password">Forgot Password?</string>
+
+    <!--Loan items-->
+    <string name="personal_loan">Personal Loan(for salaried)</string>
+    <string name="business_loan">Business Loan(for self-employed)</string>
+    <string name="daily_loan">Daily Loan(only for shopkeepers)</string>
+    <string name="home">Home Loan</string>
+    <string name="new_purchase">New Purchase</string>
+    <string name="construction">Construction</string>
+    <string name="mortgage">Mortgage</string>
+    <string name="vehicle_loan">Vehicle Loan</string>
+    <string name="two_wheeler">2 Wheeler New</string>
+    <string name="four_wheeler">4 Wheeler New</string>
+    <string name="commercial_new">Commercial New</string>
+    <string name="two_wheeler_ref">2 Wheeler New Refinance</string>
+    <string name="four_wheeler_ref">4 Wheeler New Refinance</string>
+    <string name="commercial_new_ref">Commercial New Refinance</string>
+    <string name="gold_loan">Gold Loan</string>
+
+</resources>

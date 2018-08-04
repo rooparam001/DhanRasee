@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Margins-->
+    <dimen name="medium_margin">10dp</dimen>
+    <dimen name="large_margin">20dp</dimen>
+
+    <!--Paddings-->
+    <dimen name="medium_padding">10dp</dimen>
+
+    <!--Corners radius-->
+    <dimen name="small_radius">5dp</dimen>
+
+    <!--Button Height-->
+    <dimen name="medium_button_height" />
+
+    <!--Text size-->
+    <dimen name="large_text_size">25sp</dimen>
+    <dimen name="extra_large_text_size">35sp</dimen>
+    <dimen name="medium_text_size">15sp</dimen>
+</resources>
