@@ -35,4 +35,49 @@
     <string name="father_name">Father Name</string>
     <string name="mother_name">Mother Name</string>
     <string name="name">Your Name</string>
+    <string name="address">Address</string>
+    <string name="dob">Date Of Birth</string>
+    <string name="contact_no">Contact Number</string>
+    <string name="email_id">Email ID</string>
+    <string name="marital_status">Marital Status</string>
+    <string name="married">Married</string>
+    <string name="unmarried">Unmarried</string>
+    <string name="divorce">Divorcee</string>
+    <string name="spouce_name">Spouse Name(if married)</string>
+    <string name="dob_marriage">Date Of Marriage(if married)</string>
+    <string name="type_of_residence">Type of Residence</string>
+    <string name="owned">Owned/Self</string>
+    <string name="ancestral">Ancestral</string>
+    <string name="rented">Rented</string>
+    <string name="no_of_years">Number of Years at Same Address</string>
+    <string name="occupation">Occupation</string>
+    <string name="salaried">Salaried</string>
+    <string name="business">Business</string>
+
+    <!--official details hint-->
+    <string name="name_of_firm">Name of Firm</string>
+    <string name="name_of_department">Name of Department</string>
+    <string name="designation">Designation</string>
+    <string name="date_of_establishment">Date of Establishment</string>
+    <string name="date_of_joining">Date of Joining</string>
+    <string name="official_contact">Official Contact Number</string>
+    <string name="official_mail_id">Official Email ID</string>
+
+    <!--Image Uploads-->
+    <string name="proof_of_identity">Proof Of Identity</string>
+    <string name="aadhar">Aadhar(front)</string>
+    <!--<string name="Pan">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
+    <!--<string name="others">Others</string>-->
 </resources>
