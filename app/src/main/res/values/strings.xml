@@ -29,4 +29,9 @@
     <string name="commercial_new_ref">Commercial New Refinance</string>
     <string name="gold_loan">Gold Loan</string>
 
+
+    <!--Personal detail hints -->
+    <string name="father_name">Father Name</string>
+    <string name="mother_name">Mother Name</string>
+    <string name="name">Your Name</string>
 </resources>
