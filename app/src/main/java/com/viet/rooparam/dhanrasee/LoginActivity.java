@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button login, sign_up;
+    Button login, sign_up,skip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login_button);
         sign_up = findViewById(R.id.sign_up_button);
+        skip = findViewById(R.id.skip_button);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,15 @@ public class LoginActivity extends AppCompatActivity {
                             + " Please install a webbrowser",  Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,LoanCategoryActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

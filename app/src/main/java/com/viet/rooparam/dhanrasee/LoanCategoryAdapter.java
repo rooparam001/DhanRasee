@@ -1,6 +1,7 @@
 package com.viet.rooparam.dhanrasee;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -65,8 +66,21 @@ public class LoanCategoryAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        return null;
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent)
+    {
+            String headerTitle = (String) getGroup(groupPosition);
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.header_loan_list, null);
+            }
+
+            TextView lblListHeader = (TextView) convertView
+                    .findViewById(R.id.header_list_text);
+            lblListHeader.setTypeface(null, Typeface.BOLD);
+            lblListHeader.setText(headerTitle);
+
+            return convertView;
     }
 
     @Override
