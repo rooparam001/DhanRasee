@@ -86,5 +86,8 @@
     <string name="property_papers">Property Papers</string>
     <string name="gdd_jewelery">Gdd Jewelery</string>
     <string name="vehicle_noc">Vehicle NOC</string>
+    <string name="proof_of_address">Proof of Address</string>
 
+    <!--Next-->
+    <string name="next_button_text">Next</string>
 </resources>
