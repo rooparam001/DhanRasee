@@ -55,6 +55,7 @@
     <string name="salaried">Salaried</string>
     <string name="business">Business</string>
     <string name="others">Others</string>
+    <string name="next_page">Next Page</string>
 
     <!--official details hint-->
     <string name="name_of_firm">Name of Firm</string>
@@ -68,6 +69,9 @@
     <!--Image Uploads-->
     <string name="proof_of_identity">Proof Of Identity</string>
     <string name="aadhar">Aadhar(front)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--<string name="Pan">Others</string>-->
     <!--<string name="others">Others</string>-->
     <!--<string name="others">Others</string>-->
