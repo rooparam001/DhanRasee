@@ -26,6 +26,7 @@ public class DataFillingActivity extends AppCompatActivity {
         PersonalDetailFragment detailFragment = new PersonalDetailFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.data_frame,detailFragment);
+        ft.commit();
 
     }
 }
