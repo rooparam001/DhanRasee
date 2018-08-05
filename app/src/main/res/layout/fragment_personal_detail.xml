@@ -63,7 +63,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/no_of_years"
-            app:layout_constraintHeight_percent="0.1">
+            app:layout_constraintHeight_percent="0.05">
 
             <RadioButton
                 android:id="@+id/owned_rb"
@@ -144,16 +144,145 @@
 
 
         <EditText
-            android:id="@+id/et_contact_no"
+            android:id="@+id/et_mail_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/contact_no"
+            android:hint="@string/email_id"
             android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_contact_no" />
+
+
+        <TextView
+            android:id="@+id/et_marital_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/marital_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_mail_id" />
+
+        <RadioGroup
+            android:id="@+id/rg_married_status"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/et_marital_status"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/et_spouse_name"
+            app:layout_constraintHeight_percent="0.05">
+
+            <RadioButton
+                android:id="@+id/married_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/married"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+
+            <RadioButton
+                android:id="@+id/unmarried_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/unmarried"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size"/>
+
+
+            <RadioButton
+                android:id="@+id/divorcee_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/divorce"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/et_spouse_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/spouse_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/rg_married_status" />
+
+        <EditText
+            android:id="@+id/et_dom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dob_marriage"
+            android:imeOptions="actionNext"
+            android:inputType="date"
             android:maxLines="1"
             android:maxLength="10"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_dob" />
+            app:layout_constraintTop_toBottomOf="@id/et_spouse_name" />
+
+
+        <TextView
+            android:id="@+id/et_occupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/occupation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_dom" />
+
+        <RadioGroup
+            android:id="@+id/rg_occupation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/et_occupation"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHeight_percent="0.05">
+
+            <RadioButton
+                android:id="@+id/salaried_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/salaried"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+
+            <RadioButton
+                android:id="@+id/business_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/business"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size"/>
+
+
+            <RadioButton
+                android:id="@+id/others_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/others"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+        </RadioGroup>
 
     </android.support.constraint.ConstraintLayout>
 
