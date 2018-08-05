@@ -66,19 +66,22 @@
 
     <!--Image Uploads-->
     <string name="proof_of_identity">Proof Of Identity</string>
-    <string name="aadhar">Aadhar(front)</string>
-    <!--<string name="Pan">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
-    <!--<string name="others">Others</string>-->
+    <string name="aadhar_front">Aadhar(FRONT)</string>
+    <string name="pan">PAN Card</string>
+    <string name="driving_license">Driving License</string>
+    <string name="voter_id_card">Voter ID Card</string>
+    <string name="aadhar_back">Aadhar(BACK)</string>
+    <string name="electricity_bill">Electricity Bill(Owned or Ancestral)</string>
+    <string name="gas_bill">Gas Bill(Owned or Ancestral)</string>
+    <string name="ration_card">Ration Card(By Self Name)</string>
+    <string name="proof_of_income">Proof Of Income</string>
+    <string name="three_itr">3 Years of ITR</string>
+    <string name="three_salary">3 Months of Salary Slips</string>
+    <string name="additional_attachments">Additional Attachments</string>
+    <string name="one_banking">1 Year Banking</string>
+    <string name="firm_registration">Firm Registration</string>
+    <string name="vehicle_rc">Vehicle RC</string>
+    <string name="property_papers">Property Papers</string>
+    <string name="gdd_jewelery">Gdd Jewelery</string>
+    <string name="vehicle_noc">Vehicle NOC</string>
 </resources>
