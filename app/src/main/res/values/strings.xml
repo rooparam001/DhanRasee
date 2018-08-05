@@ -55,7 +55,6 @@
     <string name="salaried">Salaried</string>
     <string name="business">Business</string>
     <string name="others">Others</string>
-    <string name="next_page">Next Page</string>
 
     <!--official details hint-->
     <string name="name_of_firm">Name of Firm</string>

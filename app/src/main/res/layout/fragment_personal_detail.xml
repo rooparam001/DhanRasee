@@ -291,11 +291,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_background"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="@string/next_page"
+            android:text="@string/next_button_text"
             android:textColor="@color/white"
             android:paddingHorizontal="@dimen/small_margin"
             app:layout_constraintTop_toBottomOf="@id/rg_occupation"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_margin="@dimen/large_margin"
             app:layout_constraintBottom_toBottomOf="parent"/>
