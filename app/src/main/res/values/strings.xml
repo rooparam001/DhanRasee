@@ -32,6 +32,7 @@
 
 
     <!--Personal detail hints -->
+    <string name="personal_detail">Personal Details</string>
     <string name="father_name">Father Name</string>
     <string name="mother_name">Mother Name</string>
     <string name="name">Your Name</string>
@@ -43,7 +44,7 @@
     <string name="married">Married</string>
     <string name="unmarried">Unmarried</string>
     <string name="divorce">Divorcee</string>
-    <string name="spouce_name">Spouse Name(if married)</string>
+    <string name="spouse_name">Spouse Name(if married)</string>
     <string name="dob_marriage">Date Of Marriage(if married)</string>
     <string name="type_of_residence">Type of Residence</string>
     <string name="owned">Owned/Self</string>

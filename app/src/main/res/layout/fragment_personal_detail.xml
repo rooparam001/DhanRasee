@@ -11,15 +11,149 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="@string/name"
-        android:imeOptions="actionNext"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        app:layout_constraintHeight_percent="0.1" />
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1" />
+
+        <EditText
+            android:id="@+id/et_father_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/father_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_name" />
+
+        <EditText
+            android:id="@+id/et_mother_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mother_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_father_name" />
+
+        <TextView
+            android:id="@+id/et_residence_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type_of_residence"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_mother_name" />
+
+        <RadioGroup
+            android:id="@+id/rg_residence_type"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/et_residence_type"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/no_of_years"
+            app:layout_constraintHeight_percent="0.1">
+
+            <RadioButton
+                android:id="@+id/owned_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/owned"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+
+            <RadioButton
+                android:id="@+id/ancestral_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/ancestral"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size"/>
+
+
+            <RadioButton
+                android:id="@+id/rented_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/rented"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:textSize="@dimen/medium_text_size" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/no_of_years"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/no_of_years"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLines="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/rg_residence_type" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:imeOptions="actionNext"
+            android:inputType="textPostalAddress"
+            android:maxLines="4"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/no_of_years" />
+
+        <EditText
+            android:id="@+id/et_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dob"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:maxLength="10"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_address" />
+
+        <EditText
+            android:id="@+id/et_contact_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/contact_no"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:maxLength="10"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_dob" />
+
+
+        <EditText
+            android:id="@+id/et_contact_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/contact_no"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:maxLength="10"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/et_dob" />
 
     </android.support.constraint.ConstraintLayout>
 
