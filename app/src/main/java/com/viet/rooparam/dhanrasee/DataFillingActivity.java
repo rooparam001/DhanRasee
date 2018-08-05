@@ -1,5 +1,7 @@
 package com.viet.rooparam.dhanrasee;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +22,10 @@ public class DataFillingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(R.string.personal_detail);
+
+        PersonalDetailFragment detailFragment = new PersonalDetailFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.data_frame,detailFragment);
 
     }
 }

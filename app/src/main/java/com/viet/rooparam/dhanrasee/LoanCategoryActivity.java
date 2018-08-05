@@ -29,7 +29,7 @@ public class LoanCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loan_category);
 
         expListView = (ExpandableListView) findViewById(R.id.expandable_loan_list);
-        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(R.string.select_loan);
@@ -47,7 +47,6 @@ public class LoanCategoryActivity extends AppCompatActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                Toast.makeText(getApplicationContext(), "Group Clicked " + listDataHeader.get(groupPosition), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -57,20 +56,15 @@ public class LoanCategoryActivity extends AppCompatActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
             }
         });
 
         // Listview Group collasped listener
         expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
+
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -81,15 +75,7 @@ public class LoanCategoryActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+
                 return false;
             }
         });
@@ -130,8 +116,8 @@ public class LoanCategoryActivity extends AppCompatActivity {
         vehicle.add(getString(R.string.commercial_new_ref));
 
         listDataChild.put(listDataHeader.get(0), personalLoan); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), businessLoan); // Header, Child data
-        listDataChild.put(listDataHeader.get(2), dailyLoan); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), businessLoan);
+        listDataChild.put(listDataHeader.get(2), dailyLoan);
         listDataChild.put(listDataHeader.get(3), home);
         listDataChild.put(listDataHeader.get(4), vehicle);
         listDataChild.put(listDataHeader.get(5), goldLoan);
