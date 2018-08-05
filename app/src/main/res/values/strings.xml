@@ -57,6 +57,7 @@
     <string name="others">Others</string>
 
     <!--official details hint-->
+    <string name="official_details">Official Detail\'s</string>
     <string name="name_of_firm">Name of Firm</string>
     <string name="name_of_department">Name of Department</string>
     <string name="designation">Designation</string>
@@ -66,6 +67,7 @@
     <string name="official_mail_id">Official Email ID</string>
 
     <!--Image Uploads-->
+    <string name="image_upload">Upload Documents</string>
     <string name="proof_of_identity">Proof Of Identity</string>
     <string name="aadhar_front">Aadhar(FRONT)</string>
     <string name="pan">PAN Card</string>
