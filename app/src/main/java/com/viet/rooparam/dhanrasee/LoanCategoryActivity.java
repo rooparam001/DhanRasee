@@ -48,8 +48,11 @@ public class LoanCategoryActivity extends AppCompatActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                Intent intent = new Intent(LoanCategoryActivity.this,DataFillingActivity.class);
-                startActivity(intent);
+                if(groupPosition == 0 || groupPosition == 1 || groupPosition == 2 || groupPosition == 5)
+                {
+                    Intent intent = new Intent(LoanCategoryActivity.this, DataFillingActivity.class);
+                    startActivity(intent);
+                }
                 return false;
             }
         });
