@@ -18,7 +18,11 @@
         </activity>
         <activity android:name=".LoanCategoryActivity" />
         <activity android:name=".DataFillingActivity" />
+<<<<<<< Updated upstream
         <activity android:name=".UserEnteredDataActivity"></activity>
+=======
+        <activity android:name=".PreviewImageActivity"></activity>
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

@@ -24,44 +24,44 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/front_aadhar_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/aadhar_front"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/identity_text" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/pan_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/pan"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/front_aadhar_button" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/license_button_identity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/driving_license"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/pan_button" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/voter_id_button_identity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/voter_id_card"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -80,66 +80,66 @@
             app:layout_constraintTop_toBottomOf="@id/voter_id_button_identity" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/back_aadhar_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/aadhar_back"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/proof_of_address_text" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/driving_license_button_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/driving_license"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/back_aadhar_button" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/voter_id_button_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/voter_id_card"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/driving_license_button_address" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/electricity_bill_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/electricity_bill"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/voter_id_button_address" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/gas_bill_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/gas_bill"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/electricity_bill_button" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/ration_card_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/ration_card"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -159,22 +159,22 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/itr_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/three_itr"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/proof_of_income" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/salary_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/three_salary"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -195,33 +195,33 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/one_banking_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/one_banking"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/additional_attachment_text" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/firm_registration_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/firm_registration"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
             app:layout_constraintTop_toBottomOf="@id/one_banking_button" />
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/vehicle_rc_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/vehicle_rc"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -229,11 +229,11 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/property_papers_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/property_papers"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -241,11 +241,11 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/gdd_jewelery_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/gdd_jewelery"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -253,11 +253,11 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:id="@+id/vehicle_noc_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/vehicle_noc"
             android:textColor="@color/black"
             android:textSize="@dimen/average_text_size"
@@ -265,15 +265,15 @@
 
 
         <Button
-            android:background="@drawable/custom_button_background"
-            android:layout_marginVertical="@dimen/small_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_margin"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:background="@drawable/custom_button_background"
             android:text="@string/next_button_text"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_noc_button"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="@dimen/medium_margin"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_noc_button" />
 
     </android.support.constraint.ConstraintLayout>
 
