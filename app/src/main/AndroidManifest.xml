@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoanCategoryActivity" />
-        <activity android:name=".DataFillingActivity"></activity>
+        <activity android:name=".DataFillingActivity" />
+        <activity android:name=".UserEnteredDataActivity"></activity>
     </application>
 
 </manifest>
