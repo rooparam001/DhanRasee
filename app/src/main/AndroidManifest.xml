@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.viet.rooparam.dhanrasee">
 
+    <uses-feature android:name="android.hardware.camera"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,11 +20,7 @@
         </activity>
         <activity android:name=".LoanCategoryActivity" />
         <activity android:name=".DataFillingActivity" />
-<<<<<<< Updated upstream
-        <activity android:name=".UserEnteredDataActivity"></activity>
-=======
-        <activity android:name=".PreviewImageActivity"></activity>
->>>>>>> Stashed changes
+        <activity android:name=".UserEnteredDataActivity"/>
+        <activity android:name=".PreviewImageActivity"/>
     </application>
-
 </manifest>
