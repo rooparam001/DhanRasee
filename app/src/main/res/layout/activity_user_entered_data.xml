@@ -7,28 +7,61 @@
     tools:context=".UserEnteredDataActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/personal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Personal Info"
+            android:textColor="@color/black"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintHeight_percent="0.1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/person_name"
+            app:layout_constraintTop_toBottomOf="@id/personal_info" />
+
+        <TextView
+            android:id="@+id/person_name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/person_name"
+            app:layout_constraintTop_toBottomOf="@id/personal_info" />
 
         <TextView
             android:id="@+id/person_name"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="Name"
-            android:textSize="@dimen/large_text_size"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Ram "
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/person_name_text"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/personal_info" />
 
         <TextView
             android:id="@+id/father_name_text"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Name"
-            android:textSize="@dimen/large_text_size"
-            app:layout_constraintHeight_percent="0.1"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Father Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/father_name"
             app:layout_constraintTop_toBottomOf="@id/person_name" />
@@ -36,14 +69,795 @@
         <TextView
             android:id="@+id/father_name"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Name"
-            android:textSize="@dimen/large_text_size"
-            app:layout_constraintHeight_percent="0.1"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Ram kishore"
+            android:textSize="@dimen/average_text_size"
             app:layout_constraintLeft_toRightOf="@id/father_name_text"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/person_name"
-            app:layout_constraintWidth_percent="0.6" />
+            app:layout_constraintTop_toBottomOf="@id/person_name" />
+
+
+        <TextView
+            android:id="@+id/mother_name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Mother Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mother_name"
+            app:layout_constraintTop_toBottomOf="@id/father_name" />
+
+        <TextView
+            android:id="@+id/mother_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Nirmla Devi"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/mother_name_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/father_name" />
+
+
+        <TextView
+            android:id="@+id/residence_type_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Residence Type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/residence_type"
+            app:layout_constraintTop_toBottomOf="@id/mother_name" />
+
+        <TextView
+            android:id="@+id/residence_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Rented"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/residence_type_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mother_name" />
+
+
+        <TextView
+            android:id="@+id/no_of_years_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="no_of_years"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/no_of_years"
+            app:layout_constraintTop_toBottomOf="@id/residence_type" />
+
+        <TextView
+            android:id="@+id/no_of_years"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="25"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/no_of_years_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/residence_type" />
+
+
+        <TextView
+            android:id="@+id/address_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/address"
+            app:layout_constraintTop_toBottomOf="@id/no_of_years" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="9/11,shyam nagar , near nirmal nagar, paota , jodhpur"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/no_of_years_text" />
+
+        <TextView
+            android:id="@+id/DOB_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="DOB"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/DOB"
+            app:layout_constraintTop_toBottomOf="@id/address" />
+
+        <TextView
+            android:id="@+id/DOB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="15/08/1998"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/DOB_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address" />
+
+
+        <TextView
+            android:id="@+id/contact_no_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="contact_no"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/contact_no"
+            app:layout_constraintTop_toBottomOf="@id/DOB" />
+
+        <TextView
+            android:id="@+id/contact_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="9150851998"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/contact_no_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DOB_text" />
+
+        <TextView
+            android:id="@+id/email_id_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="email_id"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/email_id"
+            app:layout_constraintTop_toBottomOf="@id/contact_no" />
+
+        <TextView
+            android:id="@+id/email_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="radfssf@gmail.com"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/email_id_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contact_no" />
+
+
+        <TextView
+            android:id="@+id/marital_status_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="marital_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/marital_status"
+            app:layout_constraintTop_toBottomOf="@id/email_id" />
+
+        <TextView
+            android:id="@+id/marital_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="@string/married"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/marital_status_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_id" />
+
+
+        <TextView
+            android:id="@+id/spouse_name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="spouse_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/spouse_name"
+            app:layout_constraintTop_toBottomOf="@id/marital_status" />
+
+        <TextView
+            android:id="@+id/spouse_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Rekha"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/spouse_name_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/marital_status" />
+
+
+        <TextView
+            android:id="@+id/DOM_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="DOM"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/DOM"
+            app:layout_constraintTop_toBottomOf="@id/spouse_name" />
+
+        <TextView
+            android:id="@+id/DOM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="12/02/1658"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/DOM_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spouse_name" />
+
+
+        <TextView
+            android:id="@+id/occupation_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="occupation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/occupation"
+            app:layout_constraintTop_toBottomOf="@id/DOM" />
+
+        <TextView
+            android:id="@+id/occupation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Business"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/occupation_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DOM" />
+
+        <TextView
+            android:id="@+id/official_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Official Detail"
+            android:textColor="@color/black"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/occupation" />
+
+
+        <TextView
+            android:id="@+id/name_of_firm_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="name_of_firm"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/name_of_firm"
+            app:layout_constraintTop_toBottomOf="@id/official_detail" />
+
+        <TextView
+            android:id="@+id/name_of_firm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="R.K.Shop"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/name_of_firm_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/official_detail" />
+
+
+        <TextView
+            android:id="@+id/name_of_department_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Department Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/name_of_department"
+            app:layout_constraintTop_toBottomOf="@id/name_of_firm" />
+
+        <TextView
+            android:id="@+id/name_of_department"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Management"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/name_of_department_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_of_firm" />
+
+
+        <TextView
+            android:id="@+id/designation_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="designation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/designation"
+            app:layout_constraintTop_toBottomOf="@id/name_of_department" />
+
+        <TextView
+            android:id="@+id/designation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="manager"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/designation_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_of_department" />
+
+
+        <TextView
+            android:id="@+id/DOE_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="DOE"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/DOE"
+            app:layout_constraintTop_toBottomOf="@id/designation" />
+
+        <TextView
+            android:id="@+id/DOE"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="15/25/1965"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/DOE_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/designation" />
+
+
+        <TextView
+            android:id="@+id/DOJ_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="DOJ"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/DOJ"
+            app:layout_constraintTop_toBottomOf="@id/DOE" />
+
+        <TextView
+            android:id="@+id/DOJ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="15/05/2005"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/DOJ_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DOE" />
+
+
+        <TextView
+            android:id="@+id/official_contact_no_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="official_contact_no"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/official_contact_no"
+            app:layout_constraintTop_toBottomOf="@id/DOJ" />
+
+        <TextView
+            android:id="@+id/official_contact_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="9562356465"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/official_contact_no_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DOJ" />
+
+        <TextView
+            android:id="@+id/official_email_id_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="official_email_id"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/official_email_id"
+            app:layout_constraintTop_toBottomOf="@id/official_contact_no" />
+
+        <TextView
+            android:id="@+id/official_email_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="office.official@gmail.com"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/official_email_id_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/official_contact_no" />
+
+        <TextView
+            android:id="@+id/document_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Documents Upload"
+            android:textColor="@color/black"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toBottomOf="@id/official_email_id" />
+
+
+        <TextView
+            android:id="@+id/identity_proof_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Identity Proof"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/aadhar_front"
+            app:layout_constraintTop_toBottomOf="@id/document_upload" />
+
+        <TextView
+            android:id="@+id/aadhar_front"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Aadhar Card"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/identity_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/document_upload" />
+
+
+        <TextView
+            android:id="@+id/pan_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Pan Card"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/identity_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aadhar_front" />
+
+
+        <TextView
+            android:id="@+id/driving_license"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Driving License"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/identity_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pan_card" />
+
+        <TextView
+            android:id="@+id/voter_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Voter Id"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/identity_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/driving_license"/>
+
+        <TextView
+            android:id="@+id/address_proof_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Address Proof"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/aadhar_back"
+            app:layout_constraintTop_toBottomOf="@id/voter_id" />
+
+        <TextView
+            android:id="@+id/aadhar_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Aadhar Card"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/voter_id" />
+
+
+        <TextView
+            android:id="@+id/gas_bill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Gas Bill"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aadhar_back" />
+
+
+        <TextView
+            android:id="@+id/driving_license_address_proof"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Driving License"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gas_bill" />
+
+        <TextView
+            android:id="@+id/voter_id_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Voter Id"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/driving_license_address_proof"/>
+
+        <TextView
+            android:id="@+id/electricity_bill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Electricity Bill"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/voter_id_address"/>
+
+        <TextView
+            android:id="@+id/ration_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Ration Card"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/address_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/electricity_bill"/>
+
+
+        <TextView
+            android:id="@+id/income_proof_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Income Proof"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/itr_slip"
+            app:layout_constraintTop_toBottomOf="@id/ration_card" />
+
+        <TextView
+            android:id="@+id/itr_slip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="ITR (last 3 years)"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/income_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ration_card" />
+
+        <TextView
+            android:id="@+id/salary_slip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Salary Slip(last 3 months)"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/income_proof_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itr_slip" />
+
+
+        <TextView
+            android:id="@+id/additional_attachments_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Additional Attachments"
+            android:textColor="@color/black"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/banking_slip"
+            app:layout_constraintTop_toBottomOf="@id/salary_slip" />
+
+        <TextView
+            android:id="@+id/banking_slip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Banking Statement(1 year)"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/salary_slip" />
+
+        <TextView
+            android:id="@+id/firm_registration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Firm Registration"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banking_slip" />
+
+
+        <TextView
+            android:id="@+id/vehicle_rc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Vehicle RC"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firm_registration" />
+
+
+        <TextView
+            android:id="@+id/property_paper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Property Paper"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_rc" />
+
+
+        <TextView
+            android:id="@+id/gold_jewelery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Gold Jewellery"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/property_paper" />
+
+
+        <TextView
+            android:id="@+id/vechile_noc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Vehicle NOC"
+            android:textSize="@dimen/average_text_size"
+            app:layout_constraintLeft_toRightOf="@id/additional_attachments_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gold_jewelery" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_background"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textSize="@dimen/average_text_size"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vechile_noc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="5dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
