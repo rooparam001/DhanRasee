@@ -35,22 +35,21 @@ import static android.support.v4.media.MediaBrowserServiceCompat.RESULT_OK;
 
 public class ImageUploadFragment extends Fragment {
 
-    Button front_aadhar_button;
+    Button front_aadhar_button,submit_button;
 
     ImageView image;
 
     public static final int CAMERA_REQUEST = 1888;
-    public static final int MY_CAMERA_PERMISSION_CODE = 1888;
+    public static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_upload, container, false);
 
-
+        submit_button = view.findViewById(R.id.submit_button);
         front_aadhar_button = view.findViewById(R.id.front_aadhar_button);
 
-        image = view.findViewById(R.id.image_test);
 
         front_aadhar_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +63,14 @@ public class ImageUploadFragment extends Fragment {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 }
+            }
+        });
+
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),UserEnteredDataActivity.class);
+                startActivity(intent);
             }
         });
 

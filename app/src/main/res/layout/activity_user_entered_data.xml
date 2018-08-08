@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserEnteredDataActivity">
+    tools:context=".UserEnteredDataActivity"
+    android:id="@+id/scroll_data">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -845,6 +853,7 @@
             app:layout_constraintTop_toBottomOf="@id/gold_jewelery" />
 
         <Button
+            android:id="@+id/confirm_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_background"
@@ -861,4 +870,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</RelativeLayout>
