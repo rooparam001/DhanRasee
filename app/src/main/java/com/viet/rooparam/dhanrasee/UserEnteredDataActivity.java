@@ -57,13 +57,25 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
                 printData();
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+//                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pdfDir,  "pdfFileName"));
+//                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                intent.setDataAndType(uri, "application/pdf");
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                startActivity(intent);
+
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, "u.lakhani10@gmail.com");
+                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                email.putExtra(Intent.EXTRA_TEXT, "email body");
                 Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
-                        getApplicationContext().getPackageName() + ".my.package.name.provider", pdfFile);
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setDataAndType(uri, "application/pdf");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pdfDir,  "myPdfFile"));
+                email.putExtra(Intent.EXTRA_STREAM, uri);
+                email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                email.setType("application/pdf");
+                email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(email);
 
             }
         });
@@ -122,7 +134,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             float scale_height = ((document.getPageSize().getHeight() - document.leftMargin()
                     - document.rightMargin() - 0) / image.getHeight()) * 400;
 
-            image.scalePercent(scale_width,scale_height);
+            image.scalePercent(scale_width);
             image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
 
             document.add(image);
