@@ -22,6 +22,7 @@ import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
@@ -98,13 +99,14 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             pdfDir.mkdir();
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.activity_user_entered_data, null); //RelativeLayout is root view of my UI(xml) file.
+        ConstraintLayout root = (ConstraintLayout) inflater.inflate(R.layout.activity_user_entered_data, null); //RelativeLayout is root view of my UI(xml) file.
 
         root.setDrawingCacheEnabled(true);
 
-        RelativeLayout relativeLayout = findViewById(R.id.scroll_data);
-
         ScrollView view = findViewById(R.id.scroll_view);
+
+        int scroll_height = view.getChildAt(0).getHeight();
+        int scroll_width = view.getChildAt(0).getWidth();
 
         Bitmap screen = getBitmapFromView(view, view.getChildAt(0).getHeight(), view.getChildAt(0).getWidth()); // here give id of our root layout (here its my RelativeLayout's id)
 
@@ -114,15 +116,23 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
         try {
 
+            Rectangle rectangle_size = new Rectangle(scroll_width,scroll_height);
+
+            Document document = new Document(rectangle_size);
+
+            Rectangle rectangle = document.getPageSize();
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             screen.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
             Image image = Image.getInstance(stream.toByteArray());
 
+//            if(screen.getWidth()>rectangle.getWidth()||screen.getHeight()>rectangle.getHeight()){
+//                image.scaleToFit(rectangle.getWidth(),rectangle.getHeight());
+//            }else {
+//                image.scaleToFit(screen.getWidth(),screen.getHeight());
+//            }
 //            image.setAbsolutePosition(0, 0);
-
-            Document document = new Document();
 
             PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
             document.open();
@@ -131,11 +141,8 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             float scale_width = ((document.getPageSize().getWidth() - document.leftMargin()
                     - document.rightMargin() - 0) / image.getWidth()) * 100;
 
-            float scale_height = ((document.getPageSize().getHeight() - document.leftMargin()
-                    - document.rightMargin() - 0) / image.getHeight()) * 400;
-
             image.scalePercent(scale_width);
-            image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+            image.setAlignment(Image.ALIGN_CENTER);
 
             document.add(image);
             document.close();
