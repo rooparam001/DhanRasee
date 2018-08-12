@@ -1,16 +1,21 @@
 package com.viet.rooparam.dhanrasee;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +36,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import static android.os.Environment.DIRECTORY_DOCUMENTS;
+
 public class UserEnteredDataActivity extends AppCompatActivity {
 
-    private static String FILE = "mnt/sdcard/invoice.pdf";
+    private static String FILE = "mnt/sdcard/documents/DhanRasee/myPdfFile.pdf";
 
     Button confirm_button;
 
@@ -49,34 +56,9 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "DhanRasee");
+                isStoragePermissionGranted();
+                sharePdf();
 
-                if (!pdfDir.exists())
-                    pdfDir.mkdir();
-
-                File pdfFile = new File(pdfDir, "myPdfFile");
-
-                printData();
-
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
-//                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pdfDir,  "pdfFileName"));
-//                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                intent.setDataAndType(uri, "application/pdf");
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-//                startActivity(intent);
-
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, "u.lakhani10@gmail.com");
-                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
-                email.putExtra(Intent.EXTRA_TEXT, "email body");
-                Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
-                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pdfDir,  "myPdfFile"));
-                email.putExtra(Intent.EXTRA_STREAM, uri);
-                email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                email.setType("application/pdf");
-                email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(email);
 
             }
         });
@@ -86,6 +68,34 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
     }
 
+    public void sharePdf() {
+        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS), "DhanRasee");
+
+        if (!pdfDir.exists())
+            pdfDir.mkdirs();
+
+        File pdfFile = new File(pdfDir, "myPdfFile");
+
+        printData();
+
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+//                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pdfDir,  "pdfFileName"));
+//                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                intent.setDataAndType(uri, "application/pdf");
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                startActivity(intent);
+
+        Intent email = new Intent(Intent.ACTION_SEND);
+        Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
+        email.putExtra(Intent.EXTRA_STREAM, uri);
+        email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        email.setType("application/pdf");
+        email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(email);
+
+    }
 
     public void printData() {
         String state = Environment.getExternalStorageState();
@@ -96,7 +106,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "DhanRasee");
 
         if (!pdfDir.exists())
-            pdfDir.mkdir();
+            pdfDir.mkdirs();
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         ConstraintLayout root = (ConstraintLayout) inflater.inflate(R.layout.activity_user_entered_data, null); //RelativeLayout is root view of my UI(xml) file.
@@ -116,7 +126,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
         try {
 
-            Rectangle rectangle_size = new Rectangle(scroll_width,scroll_height);
+            Rectangle rectangle_size = new Rectangle(scroll_width, scroll_height);
 
             Document document = new Document(rectangle_size);
 
@@ -138,8 +148,8 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             document.open();
 
 
-            float scale_width = ((document.getPageSize().getWidth() - document.leftMargin()
-                    - document.rightMargin() - 0) / image.getWidth()) * 100;
+            float scale_width = ((document.getPageSize().getHeight() - document.leftMargin()
+                    - document.rightMargin() - 0) / image.getHeight()) * 100;
 
             image.scalePercent(scale_width);
             image.setAlignment(Image.ALIGN_CENTER);
@@ -191,6 +201,35 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         } catch (DocumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("permission granted", "Permission is granted");
+                return true;
+            } else {
+
+                Log.v("permission denied", "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("permission already", "Permission is granted");
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.v("permission granted", "Permission: " + permissions[0] + "was " + grantResults[0]);
+            //resume tasks needing this permission
+            sharePdf();
         }
     }
 }
