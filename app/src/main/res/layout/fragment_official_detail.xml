@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".OfficialDetailFragment"
-    android:layout_marginHorizontal="@dimen/medium_margin">
+    android:layout_marginHorizontal="@dimen/medium_margin"
+    tools:context=".OfficialDetailFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_firm_name"
+        <FrameLayout
+            android:id="@+id/firm_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_of_firm"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            app:layout_constraintHeight_percent="0.1" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_name_of_department"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_of_department"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_firm_name" />
+            <EditText
+                android:id="@+id/et_firm_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_of_firm"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                app:layout_constraintHeight_percent="0.1" />
+
+            <EditText
+                android:id="@+id/et_name_of_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_of_department"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintTop_toBottomOf="@id/et_firm_name" />
+
+        </FrameLayout>
+
 
         <EditText
             android:id="@+id/et_designation"
@@ -41,33 +49,41 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_name_of_department" />
+            app:layout_constraintTop_toBottomOf="@id/firm_frame" />
 
-
-        <EditText
-            android:id="@+id/et_dob_establishment"
+        <FrameLayout
+            android:id="@+id/doe_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/date_of_establishment"
-            android:imeOptions="actionNext"
-            android:inputType="date"
-            android:maxLines="1"
-            android:maxLength="10"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_designation" />
+            app:layout_constraintTop_toBottomOf="@id/et_designation">
+
+            <EditText
+                android:id="@+id/et_dob_establishment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date_of_establishment"
+                android:imeOptions="actionNext"
+                android:inputType="date"
+                android:maxLength="10"
+                android:maxLines="1"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintTop_toBottomOf="@id/et_designation" />
 
 
-        <EditText
-            android:id="@+id/et_date_of_joining"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/date_of_joining"
-            android:imeOptions="actionNext"
-            android:inputType="date"
-            android:maxLines="1"
-            android:maxLength="10"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_dob_establishment" />
+            <EditText
+                android:id="@+id/et_date_of_joining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date_of_joining"
+                android:imeOptions="actionNext"
+                android:inputType="date"
+                android:maxLength="10"
+                android:maxLines="1"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintTop_toBottomOf="@id/et_dob_establishment" />
+
+        </FrameLayout>
+
 
         <EditText
             android:id="@+id/et_official_contact_no"
@@ -76,10 +92,10 @@
             android:hint="@string/official_contact"
             android:imeOptions="actionNext"
             android:inputType="numberDecimal"
-            android:maxLines="1"
             android:maxLength="10"
+            android:maxLines="1"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/et_date_of_joining" />
+            app:layout_constraintTop_toBottomOf="@id/doe_frame" />
 
 
         <EditText
@@ -97,15 +113,15 @@
             android:id="@+id/official_next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_margin"
             android:background="@drawable/custom_button_background"
             android:backgroundTint="@color/colorPrimaryDark"
+            android:paddingHorizontal="@dimen/small_margin"
             android:text="@string/next_button_text"
             android:textColor="@color/white"
-            android:paddingHorizontal="@dimen/small_margin"
-            app:layout_constraintTop_toBottomOf="@id/et_official_mail_id"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_margin="@dimen/large_margin"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/et_official_mail_id" />
 
     </android.support.constraint.ConstraintLayout>
 
