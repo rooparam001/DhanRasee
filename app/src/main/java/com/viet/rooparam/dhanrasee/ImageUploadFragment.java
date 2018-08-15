@@ -17,17 +17,22 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static android.support.v4.content.PermissionChecker.checkSelfPermission;
 import static android.support.v4.media.MediaBrowserServiceCompat.RESULT_OK;
@@ -38,6 +43,14 @@ public class ImageUploadFragment extends Fragment {
     Button front_aadhar_button,submit_button;
 
     ImageView image;
+
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
+    Toolbar toolbar;
+
+    ImageUploadAdapter imageUploadAdapter;
+
+    ExpandableListView expandableListView;
 
     String str_name = "", str_father_name = "", str_mother_name = "", str_no_of_years = "", str_address = "", str_dob = "", str_contact_no = "",
             str_mail_id = "", str_spouce_name = "", str_dom = "", str_residence_type = "", str_marital_status = "", str_occupation = "",
@@ -90,24 +103,38 @@ public class ImageUploadFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_upload, container, false);
 
+        prepareListData();
+
         submit_button = view.findViewById(R.id.submit_button);
-        front_aadhar_button = view.findViewById(R.id.front_aadhar_button);
 
 
-        front_aadhar_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        front_aadhar_button = view.findViewById(R.id.front_aadhar_button);
 
-                if (checkSelfPermission(getActivity(),Manifest.permission.CAMERA)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA},
-                            MY_CAMERA_PERMISSION_CODE);
-                } else {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
-            }
-        });
+//
+//        front_aadhar_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (checkSelfPermission(getActivity(),Manifest.permission.CAMERA)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    requestPermissions(new String[]{Manifest.permission.CAMERA},
+//                            MY_CAMERA_PERMISSION_CODE);
+//                } else {
+//                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//                }
+//            }
+//        });
+
+        expandableListView = view.findViewById(R.id.expandable_image_upload);
+
+        imageUploadAdapter = new ImageUploadAdapter(getActivity(),listDataHeader,listDataChild);
+
+        expandableListView.setAdapter(imageUploadAdapter);
+
+        expandableListView.setGroupIndicator(null);
+
+
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +192,49 @@ public class ImageUploadFragment extends Fragment {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
         }
+    }
+
+    private void prepareListData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+
+        // Adding child data
+        listDataHeader.add(getString(R.string.proof_of_identity));
+        listDataHeader.add(getString(R.string.proof_of_address));
+        listDataHeader.add(getString(R.string.proof_of_income));
+        listDataHeader.add(getString(R.string.additional_attachments));
+
+        // Adding child data
+        List<String> proof_identity = new ArrayList<String>();
+        proof_identity.add(getString(R.string.aadhar_front));
+        proof_identity.add(getString(R.string.pan));
+        proof_identity.add(getString(R.string.driving_license));
+        proof_identity.add(getString(R.string.voter_id_card));
+
+        List<String> proof_of_address = new ArrayList<String>();
+        proof_of_address.add(getString(R.string.aadhar_back));
+        proof_of_address.add(getString(R.string.driving_license));
+        proof_of_address.add(getString(R.string.voter_id_card));
+        proof_of_address.add(getString(R.string.electricity_bill));
+        proof_of_address.add(getString(R.string.gas_bill));
+        proof_of_address.add(getString(R.string.ration_card));
+
+        List<String> proof_of_income = new ArrayList<String>();
+        proof_of_income.add(getString(R.string.three_itr));
+        proof_of_income.add(getString(R.string.three_salary));
+
+        List<String> additional_attachments = new ArrayList<String>();
+        additional_attachments.add(getString(R.string.one_banking));
+        additional_attachments.add(getString(R.string.firm_registration));
+        additional_attachments.add(getString(R.string.vehicle_rc));
+        additional_attachments.add(getString(R.string.property_papers));
+        additional_attachments.add(getString(R.string.gdd_jewelery));
+        additional_attachments.add(getString(R.string.vehicle_noc));
+
+        listDataChild.put(listDataHeader.get(0), proof_identity); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), proof_of_address);
+        listDataChild.put(listDataHeader.get(2), proof_of_income);
+        listDataChild.put(listDataHeader.get(3), additional_attachments);
     }
 }
 
