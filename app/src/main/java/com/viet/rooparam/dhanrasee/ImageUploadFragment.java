@@ -103,6 +103,8 @@ public class ImageUploadFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_upload, container, false);
 
+        ((DataFillingActivity)getActivity()).getSupportActionBar().setTitle("Upload Documents");
+
         prepareListData();
 
         submit_button = view.findViewById(R.id.submit_button);

@@ -54,6 +54,8 @@ public class OfficialDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_official_detail, container, false);
 
+        ((DataFillingActivity)getActivity()).getSupportActionBar().setTitle("Official Details");
+
         firm_name = view.findViewById(R.id.et_firm_name);
         department = view.findViewById(R.id.et_name_of_department);
         designation = view.findViewById(R.id.et_designation);

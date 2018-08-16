@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -95,11 +97,31 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.child_image_text);
 
         txtListChild.setText(childText);
+
+        ImageView child_image_camera = convertView.findViewById(R.id.child_image_camera);
+
+        child_image_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(_context, "Under Construction", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ImageView child_image_gallery = convertView.findViewById(R.id.child_image_gallery);
+
+        child_image_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(_context, "Under Construction", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
+        return false;
     }
 }
