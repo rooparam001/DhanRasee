@@ -1,6 +1,7 @@
 package com.viet.rooparam.dhanrasee;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -195,9 +197,11 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         Intent email = new Intent(Intent.ACTION_SEND);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
-        email.putExtra(Intent.EXTRA_STREAM, uri);
-        email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.ContactPicker"));
         email.setType("application/pdf");
+        email.putExtra(Intent.EXTRA_STREAM, uri);
+        email.putExtra("jid", PhoneNumberUtils.stripSeparators("918890233290")+"@s.whatsapp.net");
+        email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(email);
 
