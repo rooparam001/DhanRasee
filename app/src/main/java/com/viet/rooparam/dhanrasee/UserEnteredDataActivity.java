@@ -197,10 +197,11 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         Intent email = new Intent(Intent.ACTION_SEND);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
+        email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.ContactPicker"));
         email.setType("application/pdf");
         email.putExtra(Intent.EXTRA_STREAM, uri);
-        email.putExtra("jid", PhoneNumberUtils.stripSeparators("918890233290")+"@s.whatsapp.net");
+        email.putExtra("jid", PhoneNumberUtils.stripSeparators("918963006300")+"@s.whatsapp.net");
         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(email);
