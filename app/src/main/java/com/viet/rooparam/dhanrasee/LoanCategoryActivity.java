@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class LoanCategoryActivity extends AppCompatActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    TextView minimum,maximum;
+    SeekBar loan_seekbar;
     Toolbar toolbar;
 
     @Override
@@ -29,6 +33,9 @@ public class LoanCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_category);
 
+        loan_seekbar = findViewById(R.id.loan_seek_bar);
+        minimum = findViewById(R.id.min_loan);
+        maximum = findViewById(R.id.max_loan);
         expListView = (ExpandableListView) findViewById(R.id.expandable_loan_list);
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -40,6 +47,23 @@ public class LoanCategoryActivity extends AppCompatActivity {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        loan_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         expListView.setGroupIndicator(null);
         // Listview Group click listener

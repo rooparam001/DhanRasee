@@ -13,6 +13,28 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"/>
 
+    <TextView
+        android:id="@+id/customer_care"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/customer_care"
+        android:textColor="@color/black"
+        android:layout_margin="@dimen/medium_margin"
+        android:padding="@dimen/small_margin"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/customer_care_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/customer_care_number"
+        android:textColor="@color/black"
+        android:layout_margin="@dimen/medium_margin"
+        android:paddingVertical="@dimen/small_margin"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/customer_care"/>
 
     <Button
         android:id="@+id/skip_button"

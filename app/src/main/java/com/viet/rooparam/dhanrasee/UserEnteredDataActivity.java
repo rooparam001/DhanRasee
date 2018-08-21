@@ -158,7 +158,6 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             officialcontact_no.setText(str_official_contact_no);
             officialmail_id.setText(str_official_mail_id);
 
-
             Log.d("data in intent",str_residence_type);
         }
 
@@ -173,7 +172,6 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         });
         // add permission in your manifest...
 
-
     }
 
     public void sharePdf() {
@@ -182,7 +180,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         if (!pdfDir.exists())
             pdfDir.mkdirs();
 
-        File pdfFile = new File(pdfDir, "myPdfFile");
+        File pdfFile = new File(pdfDir, "myPdfFile.pdf");
 
         printData();
 
@@ -194,7 +192,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 //                startActivity(intent);
 
-        Intent email = new Intent(Intent.ACTION_SEND);
+        Intent email = new Intent(Intent.ACTION_SEND_MULTIPLE);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
