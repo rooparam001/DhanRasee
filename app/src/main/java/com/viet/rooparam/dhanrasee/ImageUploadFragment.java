@@ -61,6 +61,7 @@ public class ImageUploadFragment extends Fragment {
 
     public static final int CAMERA_REQUEST = 1888;
     public static final int MY_CAMERA_PERMISSION_CODE = 100;
+    public static final int RESULT_GALLERY = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -193,6 +194,19 @@ public class ImageUploadFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+        }
+
+        Bitmap currentImage;
+        if (resultCode == RESULT_OK) {
+            Uri photoUri = data.getData();
+            if (photoUri != null) {
+                try {
+                    currentImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
