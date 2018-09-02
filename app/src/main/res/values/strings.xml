@@ -91,6 +91,8 @@
     <string name="gdd_jewelery">Gdd Jewelery</string>
     <string name="vehicle_noc">Vehicle NOC</string>
     <string name="proof_of_address">Proof of Address</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
     <!--Next-->
     <string name="next_button_text">Next</string>

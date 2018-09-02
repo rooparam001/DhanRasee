@@ -27,13 +27,15 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
-    public static final int RESULT_GALLERY = 0;
+    public static final int RESULT_GALLERY = 30;
+    private int i;
 
 
-    public ImageUploadAdapter(Context imageUploadFragment, List<String> listDataHeader, HashMap<String, List<String>> listDataChild) {
+    public ImageUploadAdapter(Context imageUploadFragment, List<String> listDataHeader, HashMap<String, List<String>> listDataChild, int i) {
         this._context = imageUploadFragment;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
+        this.i = i;
     }
 
     @Override
@@ -85,9 +87,11 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
 
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.image_upload_header_text);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
 
+        if (!(lblListHeader == null)) {
+            lblListHeader.setTypeface(null, Typeface.BOLD);
+            lblListHeader.setText(headerTitle);
+        }
         return convertView;
 
     }
@@ -101,212 +105,220 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.child_image_upload, null);
         }
+        if (i == 1 && childText.equalsIgnoreCase("Aadhar(FRONT)")) {
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.null_layout, null);
+        }
 
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.child_image_text);
 
-        txtListChild.setText(childText);
+        if (!(txtListChild == null))
+            txtListChild.setText(childText);
 
         ImageView child_image_camera = convertView.findViewById(R.id.child_image_camera);
 
-        child_image_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (groupPosition == 0 && childPosition == 0) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        if (!(child_image_camera == null)) {
+            child_image_camera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (groupPosition == 0 && childPosition == 0) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent, 0);
 
-                } else if (groupPosition == 0 && childPosition == 1) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 0 && childPosition == 2) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 0 && childPosition == 3) {
+                    } else if (groupPosition == 0 && childPosition == 1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                1);
+                    } else if (groupPosition == 0 && childPosition == 2) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                2);
+                    } else if (groupPosition == 0 && childPosition == 3) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 0) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                3);
+                    } else if (groupPosition == 1 && childPosition == 0) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                4);
+                    } else if (groupPosition == 1 && childPosition == 1) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 2) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                5);
+                    } else if (groupPosition == 1 && childPosition == 2) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 3) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                6);
+                    } else if (groupPosition == 1 && childPosition == 3) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 4) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                7);
+                    } else if (groupPosition == 1 && childPosition == 4) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 1 && childPosition == 5) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                8);
+                    } else if (groupPosition == 1 && childPosition == 5) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 2 && childPosition == 0) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                9);
+                    } else if (groupPosition == 2 && childPosition == 0) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 2 && childPosition == 1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                10);
+                    } else if (groupPosition == 2 && childPosition == 1) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 0) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                11);
+                    } else if (groupPosition == 3 && childPosition == 0) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                12);
+                    } else if (groupPosition == 3 && childPosition == 1) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 2) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                13);
+                    } else if (groupPosition == 3 && childPosition == 2) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 3) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                14);
+                    } else if (groupPosition == 3 && childPosition == 3) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 4) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                15);
+                    } else if (groupPosition == 3 && childPosition == 4) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } else if (groupPosition == 3 && childPosition == 5) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                16);
+                    } else if (groupPosition == 3 && childPosition == 5) {
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ((Activity) _context).startActivityForResult(intent,
-                            CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        ((Activity) _context).startActivityForResult(intent,
+                                17);
+                    }
+
                 }
-
-            }
-        });
+            });
+        }
 
         ImageView child_image_gallery = convertView.findViewById(R.id.child_image_gallery);
 
-        child_image_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (groupPosition == 0 && childPosition == 0) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+        if (!(child_image_gallery == null)) {
+            child_image_gallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (groupPosition == 0 && childPosition == 0) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
 
-                } else if (groupPosition == 0 && childPosition == 1) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 0 && childPosition == 2) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 0 && childPosition == 3) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 0) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 1) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 2) {
+                    } else if (groupPosition == 0 && childPosition == 1) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 0 && childPosition == 2) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 0 && childPosition == 3) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 0) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 1) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 2) {
 
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 3) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 3) {
 
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 4) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 1 && childPosition == 5) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 2 && childPosition == 0) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 2 && childPosition == 1) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 0) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 1) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 2) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 3) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 4) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
-                } else if (groupPosition == 3 && childPosition == 5) {
-                    Intent galleryIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 4) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 1 && childPosition == 5) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 2 && childPosition == 0) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 2 && childPosition == 1) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 0) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 1) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 2) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 3) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 4) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    } else if (groupPosition == 3 && childPosition == 5) {
+                        Intent galleryIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        ((Activity) _context).startActivityForResult(galleryIntent, RESULT_GALLERY);
+                    }
                 }
-            }
-        });
-
+            });
+        }
 
         return convertView;
     }

@@ -2,8 +2,11 @@ package com.viet.rooparam.dhanrasee;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -11,10 +14,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -22,12 +27,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -40,7 +49,7 @@ import static android.support.v4.media.MediaBrowserServiceCompat.RESULT_OK;
 
 public class ImageUploadFragment extends Fragment {
 
-    Button front_aadhar_button,submit_button;
+    Button front_aadhar_button, submit_button;
 
     ImageView image;
 
@@ -55,13 +64,19 @@ public class ImageUploadFragment extends Fragment {
     String str_name = "", str_father_name = "", str_mother_name = "", str_no_of_years = "", str_address = "", str_dob = "", str_contact_no = "",
             str_mail_id = "", str_spouce_name = "", str_dom = "", str_residence_type = "", str_marital_status = "", str_occupation = "",
             str_firm_name = "", str_department = "", str_designation = "", str_doe = "", str_doj = "", str_official_contact_no = "",
-            str_official_mail_id = "";
+            str_official_mail_id = "", loan_category;
 
-    int flag;
+    int flag, i;
 
     public static final int CAMERA_REQUEST = 1888;
     public static final int MY_CAMERA_PERMISSION_CODE = 100;
-    public static final int RESULT_GALLERY = 0;
+    public static final int RESULT_GALLERY = 30;
+
+    ArrayList<ByteArrayOutputStream> bytestream = new ArrayList<>();
+    ArrayList<Bitmap> photo = new ArrayList<>();
+
+    String[] files = {"image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png", "image8.png", "image9.png", "image10.png",
+            "image11.png", "image12.png", "image13.png", "image14.png", "image15.png", "image16.png", "image17.png"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,18 +110,44 @@ public class ImageUploadFragment extends Fragment {
             }
             str_official_contact_no = getArguments().getString("official_contact_no");
             str_official_mail_id = getArguments().getString("official_mail_id");
+            loan_category = getArguments().getString("loan_category");
 
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_upload, container, false);
 
-        ((DataFillingActivity)getActivity()).getSupportActionBar().setTitle("Upload Documents");
+        ((DataFillingActivity) getActivity()).getSupportActionBar().setTitle("Upload Documents");
 
         prepareListData();
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_DeviceDefault_Light_Dialog);
+        } else {
+            builder = new AlertDialog.Builder(getActivity());
+        }
+        builder.setTitle("Image Upload")
+                .setMessage("Do you have Aadhar?")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("i value", which + "");
+                        i = 1;
+                        // continue with delete
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("i value", which + "");
+                        i = 0;
+                        // do nothing
+                    }
+                })
+                .setIcon(null)
+                .show();
 
         submit_button = view.findViewById(R.id.submit_button);
 
@@ -131,18 +172,16 @@ public class ImageUploadFragment extends Fragment {
 
         expandableListView = view.findViewById(R.id.expandable_image_upload);
 
-        imageUploadAdapter = new ImageUploadAdapter(getActivity(),listDataHeader,listDataChild);
+        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i);
 
         expandableListView.setAdapter(imageUploadAdapter);
 
         expandableListView.setGroupIndicator(null);
 
-
-
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getContext(),UserEnteredDataActivity.class);
+                Intent intent1 = new Intent(getContext(), UserEnteredDataActivity.class);
                 intent1.putExtra("name", str_name);
                 intent1.putExtra("father_name", str_father_name);
                 intent1.putExtra("mother_name", str_mother_name);
@@ -163,7 +202,8 @@ public class ImageUploadFragment extends Fragment {
                 intent1.putExtra("date_of_joining", str_doj);
                 intent1.putExtra("official_contact_no", str_official_contact_no);
                 intent1.putExtra("official_mail_id", str_official_mail_id);
-                intent1.putExtra("flag",flag);
+                intent1.putExtra("flag", flag);
+                intent1.putExtra("images", files);
                 startActivity(intent1);
             }
         });
@@ -189,12 +229,28 @@ public class ImageUploadFragment extends Fragment {
 
 
     }
+
     @Override
-    public void onActivityResult ( int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+        for (int j = 0; j <= 17; j++) {
+            if (requestCode == j && resultCode == Activity.RESULT_OK) {
+                photo.set(j, (Bitmap) data.getExtras().get("data"));
+                try {
+                    FileOutputStream[] fileOutputStream = new FileOutputStream[j];
+                    fileOutputStream[j] = getActivity().openFileOutput(files[j], Context.MODE_PRIVATE);
+                    photo.get(j).compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream[j]);
+                    fileOutputStream[j].close();
+                    photo.get(j).recycle();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
+
 
         Bitmap currentImage;
         if (resultCode == RESULT_OK) {
@@ -202,7 +258,7 @@ public class ImageUploadFragment extends Fragment {
             if (photoUri != null) {
                 try {
                     currentImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
-                    
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 import static android.os.Environment.DIRECTORY_DOCUMENTS;
 
@@ -63,6 +64,10 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             address_license, address_gas_bill, address_elctricity_bill, address_ration_card, income_itr, income_salary_slip,
             addi_atts_banking_statement, addi_atts_firm_reg, addi_atts_vehicle_rc, addi_atts_property_paper, addi_atts_gold_jwrllery,
             addi_atts_vehicle_noc;
+
+    ArrayList<Uri> photo = new ArrayList<>();
+
+    String []image_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +139,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             str_official_contact_no = getIntent().getStringExtra("official_contact_no");
             str_official_mail_id = getIntent().getStringExtra("official_mail_id");
             flag = getIntent().getExtras().getInt("flag");
-
+            image_name = getIntent().getStringArrayExtra("images");
 
             yourname.setText(str_name);
             fathername.setText(str_father_name);
@@ -192,14 +197,27 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 //                startActivity(intent);
 
+        Uri[] uris = new Uri[17];
+
+        for(int j = 0; j<=17;j++) {
+            uris[j] = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(image_name[j]));
+
+            photo.set(0,uris[j]);
+        }
+
+
+
         Intent email = new Intent(Intent.ACTION_SEND_MULTIPLE);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
+
+        photo.set(18,uri);
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.ContactPicker"));
         email.setType("application/pdf");
         email.putExtra(Intent.EXTRA_STREAM, uri);
-        email.putExtra("jid", PhoneNumberUtils.stripSeparators("918963006300")+"@s.whatsapp.net");
+        email.putExtra("jid", PhoneNumberUtils.stripSeparators("919928330880")+"@s.whatsapp.net");
         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(email);

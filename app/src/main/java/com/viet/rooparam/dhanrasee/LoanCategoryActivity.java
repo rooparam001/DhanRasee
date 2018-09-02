@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -24,18 +25,16 @@ public class LoanCategoryActivity extends AppCompatActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    TextView minimum,maximum;
-    SeekBar loan_seekbar;
+    EditText loanamount;
     Toolbar toolbar;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_category);
 
-        loan_seekbar = findViewById(R.id.loan_seek_bar);
-        minimum = findViewById(R.id.min_loan);
-        maximum = findViewById(R.id.max_loan);
+        loanamount = findViewById(R.id.min_loan);
         expListView = (ExpandableListView) findViewById(R.id.expandable_loan_list);
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -48,23 +47,6 @@ public class LoanCategoryActivity extends AppCompatActivity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
-        loan_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
         expListView.setGroupIndicator(null);
         // Listview Group click listener
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -75,6 +57,7 @@ public class LoanCategoryActivity extends AppCompatActivity {
                 if(groupPosition == 0 || groupPosition == 1 || groupPosition == 2 || groupPosition == 5)
                 {
                     Intent intent = new Intent(LoanCategoryActivity.this, DataFillingActivity.class);
+                    intent.putExtra("loan_category",listDataHeader.get(groupPosition));
                     startActivity(intent);
                 }
                 return false;
@@ -104,7 +87,11 @@ public class LoanCategoryActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+
+                String loan = loanamount.getText().toString();
+
                 Intent intent = new Intent(LoanCategoryActivity.this,DataFillingActivity.class);
+                intent.putExtra("loan_category",listDataChild.get(groupPosition).get(childPosition));
                 startActivity(intent);
                 return false;
             }

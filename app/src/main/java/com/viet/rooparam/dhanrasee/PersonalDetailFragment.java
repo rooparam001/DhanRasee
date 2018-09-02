@@ -27,6 +27,15 @@ public class PersonalDetailFragment extends Fragment {
     String str_name = "",str_father_name = "",str_mother_name = "",str_no_of_years = "",str_address = "",str_dob = "",str_contact_no = "",
             str_mail_id = "",str_spouce_name = "", str_dom = "",str_residence_type = "",str_marital_status = "",str_occupation = "";
 
+    String loan_category;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            loan_category = getArguments().getString("loan_category");
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -168,6 +177,7 @@ public class PersonalDetailFragment extends Fragment {
                     bundle.putString("spouce_name",str_spouce_name);
                     bundle.putString("date_of_marriage",str_dom);
                     bundle.putString("occupation",str_occupation);
+                    bundle.putString("loan_category",loan_category);
 
                     OfficialDetailFragment officialDetailFragment = new OfficialDetailFragment();
                     FragmentTransaction ftOfficial = getFragmentManager().beginTransaction();

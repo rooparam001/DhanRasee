@@ -23,7 +23,7 @@ public class OfficialDetailFragment extends Fragment {
     String str_name = "", str_father_name = "", str_mother_name = "", str_no_of_years = "", str_address = "", str_dob = "", str_contact_no = "",
             str_mail_id = "", str_spouce_name = "", str_dom = "", str_residence_type = "", str_marital_status = "", str_occupation = "",
             str_firm_name = "", str_department = "", str_designation = "", str_doe = "", str_doj = "", str_official_contact_no = "",
-            str_official_mail_id = "";
+            str_official_mail_id = "", loan_category;
 
     int flag = 0;
 
@@ -45,6 +45,7 @@ public class OfficialDetailFragment extends Fragment {
             str_spouce_name = getArguments().getString("spouce_name");
             str_dom = getArguments().getString("date_of_marriage");
             str_occupation = getArguments().getString("occupation");
+            loan_category = getArguments().getString("loan_category");
 
         }
     }
@@ -54,7 +55,7 @@ public class OfficialDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_official_detail, container, false);
 
-        ((DataFillingActivity)getActivity()).getSupportActionBar().setTitle("Official Details");
+        ((DataFillingActivity) getActivity()).getSupportActionBar().setTitle("Official Details");
 
         firm_name = view.findViewById(R.id.et_firm_name);
         department = view.findViewById(R.id.et_name_of_department);
@@ -154,6 +155,7 @@ public class OfficialDetailFragment extends Fragment {
                     }
                     bundle.putString("official_contact_no", str_official_contact_no);
                     bundle.putString("official_mail_id", str_official_mail_id);
+                    bundle.putString("loan_category", loan_category);
                     bundle.putInt("flag", flag);
 
                     ImageUploadFragment imageUploadFragment = new ImageUploadFragment();
