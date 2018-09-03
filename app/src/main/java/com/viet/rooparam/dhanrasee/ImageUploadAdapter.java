@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +29,18 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     private HashMap<String, List<String>> _listDataChild;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
     public static final int RESULT_GALLERY = 30;
-    private int i;
+    private int i, count = 0;
+    private String loan_name, occupation_name;
+    String headerTitle;
 
 
-    public ImageUploadAdapter(Context imageUploadFragment, List<String> listDataHeader, HashMap<String, List<String>> listDataChild, int i) {
+    public ImageUploadAdapter(Context imageUploadFragment, List<String> listDataHeader, HashMap<String, List<String>> listDataChild, int i, String loan_category, String str_occupation) {
         this._context = imageUploadFragment;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
         this.i = i;
+        this.loan_name = loan_category;
+        this.occupation_name = str_occupation;
     }
 
     @Override
@@ -78,12 +83,20 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.header_image_upload, null);
         }
+        if (loan_name.equalsIgnoreCase("Daily Loan(only for shopkeepers)")) {
+            if ((headerTitle.equalsIgnoreCase("Proof Of Income")) && (headerTitle.equalsIgnoreCase("Additional Attachments"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
 
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.image_upload_header_text);
@@ -100,22 +113,19 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final String childText = (String) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
+
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.child_image_upload, null);
-        }
-        if (i == 1 && childText.equalsIgnoreCase("Aadhar(FRONT)")) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.null_layout, null);
-        }
+
 
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.child_image_text);
 
         if (!(txtListChild == null))
             txtListChild.setText(childText);
+
+
 
         ImageView child_image_camera = convertView.findViewById(R.id.child_image_camera);
 
@@ -318,6 +328,37 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
                     }
                 }
             });
+        }
+
+
+        if (loan_name.equalsIgnoreCase("Personal Loan(for salaried)")) {
+            if((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Vehicle NOC")))
+            {
+                 infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Business Loan(for self-employed)")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))) {
+                 infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+            if (!(childText.equalsIgnoreCase("1 Year Banking")) && !(childText.equalsIgnoreCase("Firm Registration"))) {
+                 infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+            if (!(childText.equalsIgnoreCase("3 Years of ITR"))) {
+                 infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
         }
 
         return convertView;

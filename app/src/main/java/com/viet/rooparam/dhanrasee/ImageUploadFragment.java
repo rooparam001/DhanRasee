@@ -172,7 +172,7 @@ public class ImageUploadFragment extends Fragment {
 
         expandableListView = view.findViewById(R.id.expandable_image_upload);
 
-        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i);
+        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i,loan_category,str_occupation);
 
         expandableListView.setAdapter(imageUploadAdapter);
 
