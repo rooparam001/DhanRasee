@@ -84,18 +84,16 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         headerTitle = (String) getGroup(groupPosition);
-        if (convertView == null) {
+        try {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.header_image_upload, null);
         }
-        if (loan_name.equalsIgnoreCase("Daily Loan(only for shopkeepers)")) {
-            if ((headerTitle.equalsIgnoreCase("Proof Of Income")) && (headerTitle.equalsIgnoreCase("Additional Attachments"))) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.null_layout, null);
-            }
+        catch(Exception e)
+        {
+          e.printStackTrace();
         }
+
 
 
         TextView lblListHeader = (TextView) convertView
@@ -105,6 +103,37 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
             lblListHeader.setTypeface(null, Typeface.BOLD);
             lblListHeader.setText(headerTitle);
         }
+
+//        try {
+//            if (loan_name.equalsIgnoreCase("Daily Loan(only for shopkeepers)")) {
+//                if ((headerTitle.equalsIgnoreCase("Proof Of Income"))) {
+//                    LayoutInflater infalInflater = (LayoutInflater) this._context
+//                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    convertView = infalInflater.inflate(R.layout.null_layout, null);
+//                }
+//                if ((headerTitle.equalsIgnoreCase("Additional Attachments"))) {
+//                    LayoutInflater infalInflater = (LayoutInflater) this._context
+//                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    convertView = infalInflater.inflate(R.layout.null_layout, null);
+//                }
+//            }
+//
+//            if (loan_name.equalsIgnoreCase("Gold Loan")) {
+//                if ((headerTitle.equalsIgnoreCase("Proof Of Income"))) {
+//                    LayoutInflater infalInflater = (LayoutInflater) this._context
+//                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    convertView = infalInflater.inflate(R.layout.null_layout, null);
+//                }
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+
+
+        Log.d("Loan", headerTitle);
+
         return convertView;
 
     }
@@ -113,18 +142,20 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final String childText = (String) getChild(groupPosition, childPosition);
 
-
+        try {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.child_image_upload, null);
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.child_image_text);
+        Log.d("i ki value",i+"");
 
         if (!(txtListChild == null))
             txtListChild.setText(childText);
-
 
 
         ImageView child_image_camera = convertView.findViewById(R.id.child_image_camera);
@@ -330,37 +361,250 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
             });
         }
 
-
         if (loan_name.equalsIgnoreCase("Personal Loan(for salaried)")) {
-            if((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
                     || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Vehicle RC"))
-                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("Gold Jewelery"))
-                    || (childText.equalsIgnoreCase("Vehicle NOC")))
-            {
-                 infalInflater = (LayoutInflater) this._context
+                    || (childText.equalsIgnoreCase("Property Papers")) || (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Vehicle NOC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+
+        } else if (loan_name.equalsIgnoreCase("Business Loan(for self-employed)")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                    || (childText.equalsIgnoreCase("Property Papers")) || (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Vehicle NOC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+
+        } else if (loan_name.equalsIgnoreCase("Daily Loan(only for shopkeepers)")) {
+            if ((headerTitle.equalsIgnoreCase("Proof Of Income")) ) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+            if ((headerTitle.equalsIgnoreCase("Additional Attachments"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.null_layout, null);
             }
         }
 
-        else if (loan_name.equalsIgnoreCase("Business Loan(for self-employed)")) {
-            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))) {
-                 infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.null_layout, null);
-            }
-            if (!(childText.equalsIgnoreCase("1 Year Banking")) && !(childText.equalsIgnoreCase("Firm Registration"))) {
-                 infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.null_layout, null);
-            }
-            if (!(childText.equalsIgnoreCase("3 Years of ITR"))) {
-                 infalInflater = (LayoutInflater) this._context
+        else if (loan_name.equalsIgnoreCase("New Purchase") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.null_layout, null);
             }
         }
 
+        else if (loan_name.equalsIgnoreCase("New Purchase") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Construction") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Construction") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Mortgage") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Mortgage") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("2 Wheeler New") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("2 Wheeler New") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("Vehicle RC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("4 Wheeler New") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("4 Wheeler New") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("Vehicle RC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Commercial New") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Commercial New") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("Vehicle RC"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("2 Wheeler New Refinance") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("2 Wheeler New Refinance") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Property Papers"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("4 Wheeler New Refinance") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("4 Wheeler New Refinance") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Property Papers"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Commercial New Refinance") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Gold Jewelery"))
+                    || (childText.equalsIgnoreCase("Property Papers"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Commercial New Refinance") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("3 Months of Salary Slips")) || (childText.equalsIgnoreCase("Firm Registration"))
+                    || (childText.equalsIgnoreCase("Gold Jewelery")) || (childText.equalsIgnoreCase("Property Papers"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Gold Loan") && occupation_name.equalsIgnoreCase("Salaried")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                     || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("Vehicle NOC"))
+                     || (childText.equalsIgnoreCase("Property Papers")) || (childText.equalsIgnoreCase("Vehicle RC"))
+                     || (childText.equalsIgnoreCase("1 Year Banking"))|| (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
+
+        else if (loan_name.equalsIgnoreCase("Gold Loan") && occupation_name.equalsIgnoreCase("Business")) {
+            if ((i == 0 && childText.equalsIgnoreCase("Aadhar(FRONT)")) || (i == 0 && childText.equalsIgnoreCase("Aadhar(BACK)"))
+                    || (childText.equalsIgnoreCase("Firm Registration")) || (childText.equalsIgnoreCase("3 Months of Salary Slips"))
+                    || (childText.equalsIgnoreCase("Vehicle NOC")) || (childText.equalsIgnoreCase("Property Papers"))
+                    || (childText.equalsIgnoreCase("Vehicle RC")) || (childText.equalsIgnoreCase("1 Year Banking"))
+                    || (childText.equalsIgnoreCase("3 Years of ITR"))) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.null_layout, null);
+            }
+        }
         return convertView;
     }
 
@@ -368,5 +612,4 @@ public class ImageUploadAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
-
 }

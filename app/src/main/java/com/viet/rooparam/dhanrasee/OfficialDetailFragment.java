@@ -1,17 +1,25 @@
 package com.viet.rooparam.dhanrasee;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 public class OfficialDetailFragment extends Fragment {
@@ -26,6 +34,9 @@ public class OfficialDetailFragment extends Fragment {
             str_official_mail_id = "", loan_category;
 
     int flag = 0;
+    int j = 0;
+    Calendar myCalendar;
+    DatePickerDialog.OnDateSetListener date;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +91,46 @@ public class OfficialDetailFragment extends Fragment {
             flag = 0;
         }
 
+
+        myCalendar = Calendar.getInstance();
+
+
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
+
+        d_o_e.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getActivity(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                j = 0;
+            }
+        });
+
+        d_o_j.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(getActivity(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+                j = 1;
+            }
+        });
+
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,15 +138,15 @@ public class OfficialDetailFragment extends Fragment {
 
                 if (flag == 0) {
                     if (firm_name.getText().toString().equalsIgnoreCase("")) {
-                        Toast.makeText(getActivity(), "Enter Details", Toast.LENGTH_SHORT).show();
+                        firm_name.setError("Enter FIrm Name");
                     }
                 } else if (flag == 1) {
                     if (department.getText().toString().equalsIgnoreCase("")) {
-                        Toast.makeText(getActivity(), "Enter Details", Toast.LENGTH_SHORT).show();
+                        department.setError("Enter Department Name");
                     }
                 }
                 if (designation.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getActivity(), "Enter Details", Toast.LENGTH_SHORT).show();
+                    designation.setError("Enter Designation");
                 }
                 if (flag == 0) {
                     if (d_o_e.getText().toString().equalsIgnoreCase("")) {
@@ -107,9 +158,9 @@ public class OfficialDetailFragment extends Fragment {
                     }
                 }
                 if (official_contactno.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getActivity(), "Enter Details", Toast.LENGTH_SHORT).show();
+                    official_contactno.setError("Enter Contact number");
                 } else if (official_mailid.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getActivity(), "Enter Details", Toast.LENGTH_SHORT).show();
+                    official_mailid.setError("Enter Mail ID");
                 } else {
 
                     if (flag == 0) {
@@ -169,5 +220,15 @@ public class OfficialDetailFragment extends Fragment {
         return view;
     }
 
-
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        if (j == 0)
+        {
+            d_o_e.setText(sdf.format(myCalendar.getTime()));
+        } else if (j == 1)
+        {
+            d_o_j.setText(sdf.format(myCalendar.getTime()));
+        }
+    }
 }

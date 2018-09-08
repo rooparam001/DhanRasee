@@ -49,10 +49,8 @@ import static android.support.v4.media.MediaBrowserServiceCompat.RESULT_OK;
 
 public class ImageUploadFragment extends Fragment {
 
-    Button front_aadhar_button, submit_button;
-
+    Button submit_button;
     ImageView image;
-
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     Toolbar toolbar;
@@ -66,7 +64,10 @@ public class ImageUploadFragment extends Fragment {
             str_firm_name = "", str_department = "", str_designation = "", str_doe = "", str_doj = "", str_official_contact_no = "",
             str_official_mail_id = "", loan_category;
 
-    int flag, i;
+    File photoDir;
+
+    int flag, i,poi,poa,adat;
+    Bitmap currentImage;
 
     public static final int CAMERA_REQUEST = 1888;
     public static final int MY_CAMERA_PERMISSION_CODE = 100;
@@ -134,14 +135,12 @@ public class ImageUploadFragment extends Fragment {
                 .setMessage("Do you have Aadhar?")
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("i value", which + "");
                         i = 1;
                         // continue with delete
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("i value", which + "");
                         i = 0;
                         // do nothing
                     }
@@ -150,7 +149,6 @@ public class ImageUploadFragment extends Fragment {
                 .show();
 
         submit_button = view.findViewById(R.id.submit_button);
-
 
 //        front_aadhar_button = view.findViewById(R.id.front_aadhar_button);
 
@@ -171,12 +169,11 @@ public class ImageUploadFragment extends Fragment {
 //        });
 
         expandableListView = view.findViewById(R.id.expandable_image_upload);
-
-        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i,loan_category,str_occupation);
-
+        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i, loan_category, str_occupation);
         expandableListView.setAdapter(imageUploadAdapter);
-
         expandableListView.setGroupIndicator(null);
+
+        Log.d("getselected id",expandableListView.getSelectedId() + "");
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,9 +202,10 @@ public class ImageUploadFragment extends Fragment {
                 intent1.putExtra("flag", flag);
                 intent1.putExtra("images", files);
                 startActivity(intent1);
+
+                Log.d("Loan name", loan_category);
             }
         });
-
 
         return view;
     }
@@ -224,23 +222,33 @@ public class ImageUploadFragment extends Fragment {
             } else {
                 Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG).show();
             }
-
         }
-
-
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+
         for (int j = 0; j <= 17; j++) {
             if (requestCode == j && resultCode == Activity.RESULT_OK) {
+
+                photoDir = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES), files[j]);
+
+                if (!photoDir.exists())
+                    photoDir.mkdirs();
+
+
                 photo.set(j, (Bitmap) data.getExtras().get("data"));
                 try {
                     FileOutputStream[] fileOutputStream = new FileOutputStream[j];
                     fileOutputStream[j] = getActivity().openFileOutput(files[j], Context.MODE_PRIVATE);
                     photo.get(j).compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream[j]);
+                    fileOutputStream[j].flush();
                     fileOutputStream[j].close();
+                    MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), photoDir.getAbsolutePath(), photoDir.getName(), photoDir.getName());
                     photo.get(j).recycle();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -248,11 +256,9 @@ public class ImageUploadFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-
         }
 
 
-        Bitmap currentImage;
         if (resultCode == RESULT_OK) {
             Uri photoUri = data.getData();
             if (photoUri != null) {
@@ -309,5 +315,3 @@ public class ImageUploadFragment extends Fragment {
         listDataChild.put(listDataHeader.get(3), additional_attachments);
     }
 }
-
-

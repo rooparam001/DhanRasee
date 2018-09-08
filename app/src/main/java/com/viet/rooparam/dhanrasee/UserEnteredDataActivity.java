@@ -199,25 +199,30 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
         Uri[] uris = new Uri[17];
 
-        for(int j = 0; j<=17;j++) {
-            uris[j] = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
-                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(image_name[j]));
+        try {
+            for (int j = 0; j <= 17; j++) {
+                uris[j] = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                        getApplicationContext().getPackageName() + ".my.package.name.provider", new File(image_name[j]));
 
-            photo.set(0,uris[j]);
+                photo.set(0, uris[j]);
+            }
         }
-
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
 
         Intent email = new Intent(Intent.ACTION_SEND_MULTIPLE);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
 
-        photo.set(18,uri);
+        photo.set(0,uri);
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
         email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.ContactPicker"));
         email.setType("application/pdf");
         email.putExtra(Intent.EXTRA_STREAM, uri);
-        email.putExtra("jid", PhoneNumberUtils.stripSeparators("919928330880")+"@s.whatsapp.net");
+        email.putExtra("jid", PhoneNumberUtils.stripSeparators("919784526827")+"@s.whatsapp.net");
         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(email);
@@ -288,7 +293,6 @@ public class UserEnteredDataActivity extends AppCompatActivity {
         }
     }
 
-
     private Bitmap getBitmapFromView(View view, int height, int width) {
         //Define a bitmap with the same size as the view
         Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -330,7 +334,6 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {

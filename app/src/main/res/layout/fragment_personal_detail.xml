@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:maxLines="1"
             app:layout_constraintHeight_percent="0.1" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/father_name"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:maxLines="1"
             app:layout_constraintHeight_percent="0.1"
             app:layout_constraintTop_toBottomOf="@id/et_name" />
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/mother_name"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:maxLines="1"
             app:layout_constraintHeight_percent="0.1"
             app:layout_constraintTop_toBottomOf="@id/et_father_name" />
@@ -72,7 +72,6 @@
                 android:layout_height="match_parent"
                 android:text="@string/owned"
                 android:textColor="@color/black"
-                android:layout_marginHorizontal="@dimen/medium_margin"
                 android:textSize="@dimen/medium_text_size" />
 
 
@@ -82,7 +81,6 @@
                 android:layout_height="match_parent"
                 android:text="@string/ancestral"
                 android:textColor="@color/black"
-                android:layout_marginHorizontal="@dimen/medium_margin"
                 android:textSize="@dimen/medium_text_size"/>
 
 
@@ -92,19 +90,18 @@
                 android:layout_height="match_parent"
                 android:text="@string/rented"
                 android:textColor="@color/black"
-                android:layout_marginHorizontal="@dimen/medium_margin"
                 android:textSize="@dimen/medium_text_size" />
 
         </RadioGroup>
 
-        <EditText
+        <Spinner
             android:id="@+id/no_of_years"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/no_of_years"
             android:imeOptions="actionNext"
             android:inputType="number"
             android:maxLines="1"
+            android:maxLength="3"
             app:layout_constraintHeight_percent="0.1"
             app:layout_constraintTop_toBottomOf="@id/rg_residence_type" />
 
@@ -114,7 +111,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/address"
             android:imeOptions="actionNext"
-            android:inputType="textPostalAddress"
+            android:inputType="textPersonName|textCapWords"
             android:maxLines="4"
             app:layout_constraintHeight_percent="0.1"
             app:layout_constraintTop_toBottomOf="@id/no_of_years" />
@@ -125,7 +122,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/dob"
             android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
+            android:inputType="none"
+            android:clickable="true"
+            android:focusable="false"
             android:maxLines="1"
             android:maxLength="10"
             app:layout_constraintHeight_percent="0.1"
@@ -215,7 +214,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/spouse_name"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:maxLines="1"
             app:layout_constraintHeight_percent="0.1"
             app:layout_constraintTop_toBottomOf="@id/rg_married_status" />
@@ -226,7 +225,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/dob_marriage"
             android:imeOptions="actionNext"
-            android:inputType="date"
+            android:inputType="none"
+            android:clickable="true"
+            android:focusable="false"
             android:maxLines="1"
             android:maxLength="10"
             app:layout_constraintHeight_percent="0.1"

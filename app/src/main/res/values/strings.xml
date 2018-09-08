@@ -11,7 +11,7 @@
     <string name="sign_up_btn">Sign Up</string>
     <string name="forgot_login">Forgot Login ID?</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="customer_care">Customer Care:</string>
+    <string name="customer_care">Need Help?</string>
     <string name="customer_care_number">8963006300</string>
 
     <!--Loan items-->
@@ -46,12 +46,12 @@
     <string name="marital_status">Marital Status</string>
     <string name="married">Married</string>
     <string name="unmarried">Unmarried</string>
-    <string name="divorce">Divorcee</string>
+    <string name="divorce">Other</string>
     <string name="spouse_name">Spouse Name(if married)</string>
     <string name="dob_marriage">Date Of Marriage(if married)</string>
     <string name="type_of_residence">Type of Residence</string>
     <string name="owned">Owned/Self</string>
-    <string name="ancestral">Ancestral</string>
+    <string name="ancestral">Ancestral/Parental</string>
     <string name="rented">Rented</string>
     <string name="no_of_years">Number of Years at Same Address</string>
     <string name="occupation">Occupation</string>

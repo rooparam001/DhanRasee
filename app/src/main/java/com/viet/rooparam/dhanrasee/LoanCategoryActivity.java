@@ -1,11 +1,20 @@
 package com.viet.rooparam.dhanrasee;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -17,7 +26,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import static com.viet.rooparam.dhanrasee.LoginActivity.MY_PHONE_PERMISSION_CODE;
 
 public class LoanCategoryActivity extends AppCompatActivity {
 
@@ -26,7 +38,9 @@ public class LoanCategoryActivity extends AppCompatActivity {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     EditText loanamount;
+    String username,password;
     Toolbar toolbar;
+    Intent intent;
     int i;
 
     @Override
@@ -40,9 +54,21 @@ public class LoanCategoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(R.string.select_loan);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         prepareListData();
 
         listAdapter = new LoanCategoryAdapter(this, listDataHeader, listDataChild);
+
+
+        intent = getIntent();
+        if(getIntent() != null)
+        {
+            username = getIntent().getStringExtra("username");
+            password = getIntent().getStringExtra("password");
+        }
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
@@ -52,13 +78,13 @@ public class LoanCategoryActivity extends AppCompatActivity {
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                if(groupPosition == 0 || groupPosition == 1 || groupPosition == 2 || groupPosition == 5)
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                if (groupPosition == 0 || groupPosition == 1 || groupPosition == 2 || groupPosition == 5)
                 {
                     Intent intent = new Intent(LoanCategoryActivity.this, DataFillingActivity.class);
-                    intent.putExtra("loan_category",listDataHeader.get(groupPosition));
+                    intent.putExtra("loan_category", listDataHeader.get(groupPosition));
                     startActivity(intent);
+                    finish();
                 }
                 return false;
             }
@@ -85,14 +111,20 @@ public class LoanCategoryActivity extends AppCompatActivity {
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
+            {
+                String key = listDataHeader.get(groupPosition);
+                String value = listDataChild.get(key).get(childPosition);
+
 
                 String loan = loanamount.getText().toString();
 
-                Intent intent = new Intent(LoanCategoryActivity.this,DataFillingActivity.class);
-                intent.putExtra("loan_category",listDataChild.get(groupPosition).get(childPosition));
-                startActivity(intent);
+
+                Intent intent1 = new Intent(LoanCategoryActivity.this, DataFillingActivity.class);
+
+                intent1.putExtra("loan_category", value);
+
+                startActivity(intent1);
                 return false;
             }
         });
@@ -139,5 +171,45 @@ public class LoanCategoryActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(4), vehicle);
         listDataChild.put(listDataHeader.get(5), goldLoan);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            Intent intent = new Intent(LoanCategoryActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.call_button) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PHONE_PERMISSION_CODE);
+                } else {
+                    Intent intent1 = new Intent(Intent.ACTION_CALL);
+                    intent1.setData(Uri.parse("tel:" + "+918963006300"));
+                    startActivity(intent1);
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LoanCategoryActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_call, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

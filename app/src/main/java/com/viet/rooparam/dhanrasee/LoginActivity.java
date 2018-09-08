@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +28,8 @@ import static com.viet.rooparam.dhanrasee.ImageUploadFragment.MY_CAMERA_PERMISSI
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button login, sign_up, skip;
-    TextView customer;
+    Button login, sign_up, customer;
+    EditText username, password;
 
     public static final int PHONE_REQUEST = 1888;
     public static final int MY_PHONE_PERMISSION_CODE = 100;
@@ -40,31 +41,22 @@ public class LoginActivity extends AppCompatActivity {
             android.Manifest.permission.CALL_PHONE
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        hasPermissions(getApplicationContext(),PERMISSIONS);
+        hasPermissions(getApplicationContext(), PERMISSIONS);
 
-        if(!hasPermissions(this, PERMISSIONS)){
+        if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
-                getResources(), R.drawable.login_background), size.x, size.y, true);
         setContentView(R.layout.activity_login);
-
-        ImageView background = findViewById(R.id.login_background_image);
-        background.setImageBitmap(bmp);
 
         customer = findViewById(R.id.customer_care_number);
         login = findViewById(R.id.login_button);
         sign_up = findViewById(R.id.sign_up_button);
-        skip = findViewById(R.id.skip_button);
+        username = findViewById(R.id.username_text);
+        password = findViewById(R.id.password_text);
 
         customer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                 MY_PHONE_PERMISSION_CODE);
                     } else {
                         Intent intent = new Intent(Intent.ACTION_CALL);
-                        intent.setData(Uri.parse("tel:" + phone_no));
+                        intent.setData(Uri.parse("tel:" + "+918963006300"));
                         startActivity(intent);
                     }
                 }
@@ -100,12 +92,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        skip.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, LoanCategoryActivity.class);
-                startActivity(intent);
-                finish();
+                if (username.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(LoginActivity.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                } else if (password.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, LoanCategoryActivity.class);
+                    intent.putExtra("username",username.getText().toString());
+                    intent.putExtra("password",password.getText().toString());
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
