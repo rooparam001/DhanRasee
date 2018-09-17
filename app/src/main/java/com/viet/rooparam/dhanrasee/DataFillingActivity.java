@@ -1,11 +1,18 @@
 package com.viet.rooparam.dhanrasee;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +24,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static com.viet.rooparam.dhanrasee.ImageUploadAdapter.CAPTURE_IMAGE_REQUEST;
 
 public class DataFillingActivity extends AppCompatActivity {
 
@@ -25,6 +41,24 @@ public class DataFillingActivity extends AppCompatActivity {
     Intent intent, intent1;
     String loan_category;
     public static final int MY_PHONE_PERMISSION_CODE = 100;
+
+    File photoDir;
+
+    Bitmap photo;
+
+
+    String[] files = {"image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png", "image8.png", "image9.png", "image10.png",
+            "image11.png", "image12.png", "image13.png", "image14.png", "image15.png", "image16.png", "image17.png"};
+
+
+    ImageUploadAdapter imageUploadAdapter;
+
+    Bitmap currentImage;
+
+    public static final int CAMERA_REQUEST = 1888;
+    public static final int MY_CAMERA_PERMISSION_CODE = 100;
+    public static final int RESULT_GALLERY = 30;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +87,7 @@ public class DataFillingActivity extends AppCompatActivity {
 
         PersonalDetailFragment detailFragment = new PersonalDetailFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //ft.add(R.id.personal_detail_fragment,detailFragment);
         Bundle bundle = new Bundle();
         bundle.putString("loan_category", loan_category);
         detailFragment.setArguments(bundle);
@@ -100,4 +135,14 @@ public class DataFillingActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_call, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public void onActivityResult(int resultCode, int requestCode, Intent data){
+
+        Log.d("ResultCode", "onActivityResult: " + resultCode);
+
+        Fragment fragment = new ImageUploadFragment();
+        fragment.onActivityResult(resultCode,resultCode,data);
+    }
+    
 }

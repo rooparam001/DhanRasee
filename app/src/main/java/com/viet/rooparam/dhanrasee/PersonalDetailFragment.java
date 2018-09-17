@@ -267,6 +267,7 @@ public class PersonalDetailFragment extends Fragment {
 
                     OfficialDetailFragment officialDetailFragment = new OfficialDetailFragment();
                     FragmentTransaction ftOfficial = getFragmentManager().beginTransaction();
+                    //ftOfficial.add(R.id.official_detail_fragment,officialDetailFragment);
                     officialDetailFragment.setArguments(bundle);
                     ftOfficial.replace(R.id.data_frame, officialDetailFragment);
                     ftOfficial.commit();

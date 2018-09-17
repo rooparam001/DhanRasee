@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,15 +34,20 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.mindorks.paracamera.Camera;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import static android.support.v4.content.PermissionChecker.checkSelfPermission;
 import static android.support.v4.media.MediaBrowserServiceCompat.RESULT_OK;
@@ -55,19 +61,34 @@ public class ImageUploadFragment extends Fragment {
     HashMap<String, List<String>> listDataChild;
     Toolbar toolbar;
 
+    String mCurrentPhotoPath;
+
+    private static final String TAG = "CapturePicture";
+    static final int REQUEST_PICTURE_CAPTURE = 1;
+
     ImageUploadAdapter imageUploadAdapter;
 
+    Camera camera;
+
     ExpandableListView expandableListView;
+
+    private static String FILE = "mnt/sdcard/documents/DhanRasee/myPdfFile.jpg";
+
+    String uri_string[] = new String[18];
+
+    Uri uri_gallery;
+
+
 
     String str_name = "", str_father_name = "", str_mother_name = "", str_no_of_years = "", str_address = "", str_dob = "", str_contact_no = "",
             str_mail_id = "", str_spouce_name = "", str_dom = "", str_residence_type = "", str_marital_status = "", str_occupation = "",
             str_firm_name = "", str_department = "", str_designation = "", str_doe = "", str_doj = "", str_official_contact_no = "",
             str_official_mail_id = "", loan_category;
 
-    File photoDir;
-
-    int flag, i,poi,poa,adat;
+    int flag, i = 1,poi,poa,adat;
     Bitmap currentImage;
+
+
 
     public static final int CAMERA_REQUEST = 1888;
     public static final int MY_CAMERA_PERMISSION_CODE = 100;
@@ -119,11 +140,24 @@ public class ImageUploadFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        super.onCreateView(inflater,container,savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_image_upload, container, false);
 
         ((DataFillingActivity) getActivity()).getSupportActionBar().setTitle("Upload Documents");
 
         prepareListData();
+
+        camera = new Camera.Builder()
+                .resetToCorrectOrientation(true)// it will rotate the camera bitmap to the correct orientation from meta data
+                .setTakePhotoRequestCode(1)
+                .setDirectory("pics")
+                .setName("ali_" + System.currentTimeMillis())
+                .setImageFormat(Camera.IMAGE_JPEG)
+                .setCompression(75)
+                .setImageHeight(1000)// it will try to achieve this height as close as possible maintaining the aspect ratio;
+                .build(this);
+
 
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -169,9 +203,13 @@ public class ImageUploadFragment extends Fragment {
 //        });
 
         expandableListView = view.findViewById(R.id.expandable_image_upload);
-        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i, loan_category, str_occupation);
+
+        imageUploadAdapter = new ImageUploadAdapter(getActivity(), listDataHeader, listDataChild, i, loan_category, str_occupation, camera);
         expandableListView.setAdapter(imageUploadAdapter);
         expandableListView.setGroupIndicator(null);
+
+        imageUploadAdapter.notifyDataSetChanged();
+        final Uri uri = imageUploadAdapter.getUri();
 
         Log.d("getselected id",expandableListView.getSelectedId() + "");
 
@@ -201,6 +239,8 @@ public class ImageUploadFragment extends Fragment {
                 intent1.putExtra("official_mail_id", str_official_mail_id);
                 intent1.putExtra("flag", flag);
                 intent1.putExtra("images", files);
+                intent1.putExtra("URi", uri);
+                intent1.putExtra("uri_string",uri_string);
                 startActivity(intent1);
 
                 Log.d("Loan name", loan_category);
@@ -225,52 +265,6 @@ public class ImageUploadFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-
-        for (int j = 0; j <= 17; j++) {
-            if (requestCode == j && resultCode == Activity.RESULT_OK) {
-
-                photoDir = new File(Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_PICTURES), files[j]);
-
-                if (!photoDir.exists())
-                    photoDir.mkdirs();
-
-
-                photo.set(j, (Bitmap) data.getExtras().get("data"));
-                try {
-                    FileOutputStream[] fileOutputStream = new FileOutputStream[j];
-                    fileOutputStream[j] = getActivity().openFileOutput(files[j], Context.MODE_PRIVATE);
-                    photo.get(j).compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream[j]);
-                    fileOutputStream[j].flush();
-                    fileOutputStream[j].close();
-                    MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), photoDir.getAbsolutePath(), photoDir.getName(), photoDir.getName());
-                    photo.get(j).recycle();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-
-        if (resultCode == RESULT_OK) {
-            Uri photoUri = data.getData();
-            if (photoUri != null) {
-                try {
-                    currentImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
@@ -314,4 +308,24 @@ public class ImageUploadFragment extends Fragment {
         listDataChild.put(listDataHeader.get(2), proof_of_income);
         listDataChild.put(listDataHeader.get(3), additional_attachments);
     }
+
+    @Override
+    public void onActivityResult(int resultCode, int requestCode, Intent data){
+
+        Log.d("RUN", "onActivityResult: RUN"+data);
+
+        Log.d("ResultCode", "onFragmentResult: " + resultCode);
+
+        Log.d("RequestCode", "onActivityResult: " + requestCode);
+
+
+        for (int i = 0; i<18; i++){
+            if(requestCode == i  && resultCode  == RESULT_OK) {
+                uri_gallery = data.getData();
+
+                uri_string[i]=uri_gallery.toString();
+            }
+        }
+    }
+
 }

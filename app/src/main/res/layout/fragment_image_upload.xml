@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ImageUploadFragment">
+    tools:context=".ImageUploadFragment"
+    android:id="@+id/image_upload_fragment">
 
     <ExpandableListView
         android:id="@+id/expandable_image_upload"

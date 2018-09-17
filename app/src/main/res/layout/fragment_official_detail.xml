@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="@dimen/medium_margin"
-    tools:context=".OfficialDetailFragment">
+    tools:context=".OfficialDetailFragment"
+    android:id="@+id/official_detail_fragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

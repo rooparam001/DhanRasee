@@ -41,6 +41,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static android.os.Environment.DIRECTORY_DOCUMENTS;
 
@@ -67,7 +68,23 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
     ArrayList<Uri> photo = new ArrayList<>();
 
-    String []image_name;
+    Uri uri_gallery, uri_aadhar_front,
+            uri_pan,
+            uri_license,
+            uri_voter,
+            uri_aadhar_back,
+            uri_electricity,
+            uri_gas,
+            uri_ration,
+            uri_itr,
+            uri_salary,
+            uri_bank,
+            uri_firm,
+            uri_vehicle;
+
+    String[] uri_string = new String[18];
+
+    String[] image_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +157,9 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             str_official_mail_id = getIntent().getStringExtra("official_mail_id");
             flag = getIntent().getExtras().getInt("flag");
             image_name = getIntent().getStringArrayExtra("images");
+            uri_gallery = (Uri) getIntent().getExtras().get("URi");
+            uri_string = getIntent().getStringArrayExtra("uri_string");
+
 
             yourname.setText(str_name);
             fathername.setText(str_father_name);
@@ -163,7 +183,7 @@ public class UserEnteredDataActivity extends AppCompatActivity {
             officialcontact_no.setText(str_official_contact_no);
             officialmail_id.setText(str_official_mail_id);
 
-            Log.d("data in intent",str_residence_type);
+            Log.d("data in intent", str_residence_type);
         }
 
         confirm_button.setOnClickListener(new View.OnClickListener() {
@@ -206,23 +226,86 @@ public class UserEnteredDataActivity extends AppCompatActivity {
 
                 photo.set(0, uris[j]);
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
+        String aadhar_front_add = "mnt/sdcard/documents/DhanRasee/" + "Aadhar(Front)" + ".jpg";
+        String pan_add = "mnt/sdcard/documents/DhanRasee/" + "PAN Card" + ".jpg";
+        String license_add = "mnt/sdcard/documents/DhanRasee/" + "Driving License" + ".jpg";
+        String voter_add = "mnt/sdcard/documents/DhanRasee/" + "Voter ID Card" + ".jpg";
+        String aadhar_back_add = "mnt/sdcard/documents/DhanRasee/" + "Aadhar(BACK)" + ".jpg";
+        String electricity_add = "mnt/sdcard/documents/DhanRasee/" + "Electricity Bill(Owned or Ancestral)" + ".jpg";
+        String gas_add = "mnt/sdcard/documents/DhanRasee/" + "Gas Bill(Owned or Ancestral)" + ".jpg";
+        String ration_add = "mnt/sdcard/documents/DhanRasee/" + "Ration Card(By Self Name)" + ".jpg";
+        String itr_add = "mnt/sdcard/documents/DhanRasee/" + "3 Years of ITR" + ".jpg";
+        String salary_add = "mnt/sdcard/documents/DhanRasee/" + "3 Months of Salary Slips" + ".jpg";
+        String bank_add = "mnt/sdcard/documents/DhanRasee/" + "1 Year Banking" + ".jpg";
+        String firm_add = "mnt/sdcard/documents/DhanRasee/" + "Firm Registration" + ".jpg";
+        String vehicle_add = "mnt/sdcard/documents/DhanRasee/" + "Vehicle RC" + ".jpg";
+
         Intent email = new Intent(Intent.ACTION_SEND_MULTIPLE);
         Uri uri = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
                 getApplicationContext().getPackageName() + ".my.package.name.provider", new File(FILE));
+        try {
+            uri_aadhar_front = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(aadhar_front_add));
+            uri_pan = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(pan_add));
+            uri_license = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(license_add));
+            uri_voter = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(voter_add));
+            uri_aadhar_back = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(aadhar_back_add));
+            uri_electricity = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(electricity_add));
+            uri_gas = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(gas_add));
+            uri_ration = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(ration_add));
+            uri_itr = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(itr_add));
+            uri_salary = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(salary_add));
+            uri_bank = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(bank_add));
+            uri_firm = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(firm_add));
+            uri_vehicle = FileProvider.getUriForFile(UserEnteredDataActivity.this, UserEnteredDataActivity.this.
+                    getApplicationContext().getPackageName() + ".my.package.name.provider", new File(vehicle_add));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        photo.set(0,uri);
-        email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
-        email.setComponent(new ComponentName("com.whatsapp","com.whatsapp.ContactPicker"));
+        photo.add(uri);
+        try {
+            photo.add(uri_aadhar_front);
+            photo.add(uri_pan);
+            photo.add(uri_license);
+            photo.add(uri_voter);
+            photo.add(uri_aadhar_back);
+            photo.add(uri_electricity);
+            photo.add(uri_gas);
+            photo.add(uri_ration);
+            photo.add(uri_itr);
+            photo.add(uri_salary);
+            photo.add(uri_bank);
+            photo.add(uri_firm);
+            photo.add(uri_vehicle);
+
+            photo.addAll(Arrays.asList(uri_array).subList(0, 19));
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        email.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+        email.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.ContactPicker"));
         email.setType("application/pdf");
-        email.putExtra(Intent.EXTRA_STREAM, uri);
-        email.putExtra("jid", PhoneNumberUtils.stripSeparators("919784526827")+"@s.whatsapp.net");
+        email.putExtra(Intent.EXTRA_STREAM, photo);
+        email.putExtra("jid", PhoneNumberUtils.stripSeparators("918890233290") + "@s.whatsapp.net");
         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(email);
@@ -354,12 +437,17 @@ public class UserEnteredDataActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.v("permission granted", "Permission: " + permissions[0] + "was " + grantResults[0]);
             //resume tasks needing this permission
             sharePdf();
         }
+    }
+
+    public void documentName(String document_name) {
+
     }
 }

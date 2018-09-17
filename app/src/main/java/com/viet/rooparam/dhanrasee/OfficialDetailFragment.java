@@ -211,6 +211,7 @@ public class OfficialDetailFragment extends Fragment {
 
                     ImageUploadFragment imageUploadFragment = new ImageUploadFragment();
                     FragmentTransaction ftImage = getFragmentManager().beginTransaction();
+                    //ftImage.add(R.id.image_upload_fragment,imageUploadFragment);
                     imageUploadFragment.setArguments(bundle);
                     ftImage.replace(R.id.data_frame, imageUploadFragment);
                     ftImage.commit();
